@@ -62,7 +62,7 @@ class BukuController extends CI_Controller
 
 	public function update($id)
 	{
-		$data['judul'] = 'Rumah Sakit';
+		$data['judul'] = 'Data Buku';
 		$data['Buku'] = $this->BukuModel->getAllBuku();
 
 		//from library form_validation
