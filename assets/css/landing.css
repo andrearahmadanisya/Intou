@@ -1,0 +1,19 @@
+p{
+    padding-left:160px;
+}
+
+.container-fluid{
+    padding-left:160px;  
+}
+
+.card{
+    padding:0px;
+}
+
+.card-img-overlay{
+    padding-right:1000px;
+}
+
+body{
+    background:white;
+  }

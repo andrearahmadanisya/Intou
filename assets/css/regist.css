@@ -1,0 +1,16 @@
+.register-block{
+    background-color : #007B9B;
+    padding : 50px 0;
+}
+.container{
+    background:#fff; border-radius: 10px;
+}
+.carousel-inner{
+    border-radius:0 10px 10px 0;
+}
+.carousel-caption{
+    text-align:left; left:5%;
+}
+.register-sec{
+    padding: 50px 30px; position:relative;
+}
