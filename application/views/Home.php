@@ -1,23 +1,20 @@
-<?php
-defined('BASEPATH') or exit('No direct script access allowed');
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<title>Welcome to IntoU</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Home</title>
 </head>
 
-<body>
-
-	<div id="container">
-		<h1>Welcome to IntoU</h1>
-
-		<div id="body">
-			<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
+<body class="home">
+	<div class="container">
+		<div class="row">
+			<div class="col text-center tips">
+				<h2>This is Home</h2>
+			</div>
 		</div>
-
 </body>
 
 </html>
