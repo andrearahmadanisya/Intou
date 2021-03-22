@@ -29,7 +29,7 @@ class LoginController extends CI_Controller
 				$pass = $this->input->post('password');
 				if ($user['password'] == $pass) {
 					$this->session->set_userdata('user', $user);
-					redirect('BukuController');
+					redirect('HomeController');
 				} else {
 					redirect('LoginController'); //pass salah
 				}

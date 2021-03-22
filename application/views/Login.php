@@ -1,42 +1,25 @@
-<div class="container">
-
-	<!-- Outer Row -->
-	<div class="row justify-content-center">
-
-		<div class="col-lg-7">
-
-			<div class="card o-hidden border-0 shadow-lg my-5">
-				<div class="card-body p-0">
-					<!-- Nested Row within Card Body -->
-					<div class="row">
-						<div class="col-lg">
-							<div class="p-5">
-								<div class="text-center">
-									<h1 class="h4 text-gray-900 mb-4">Wellcome to IntoU</h1>
-								</div>
-
-								<form action="<?= site_url('LoginController') ?>" method="post" accept-charset="utf-8">
-									<div class="form-group">
-										<label class="label control-label">Username</label>
-										<input type="username" class="form-control" name="username" placeholder="Username">
-									</div>
-
-									<div class="form-group">
-										<label class="label control-label">Password</label>
-										<input type="password" class="form-control" name="password" placeholder="Password">
-									</div>
-
-									<button type="submit" class="btn btn-info">Login</button>
-								</form>
-								<hr>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+	<link href="assets/css/login.css" rel="stylesheet">
+	<title>Login | INTOU</title>
+</head>
+<body>
+	<div class="pertama" style="background-image: url('assets/images/bg2.png');">
+    <div class="gambar1">
+			<img src="assets/images/login1.png">
+    </div>
+    
+		<div class= "loginbox">
+			<h1>USER LOGIN</h1>
+				<form action="" method="post" class="login__form">
+				<input type="text" name="username" placeholder="Username">
+				<input type="password" name="password" placeholder="Password">
+				<input type="submit" name="login" value="Login">
+			</form>
 		</div>
-
 	</div>
-
-</div>
+</body>
+</html>

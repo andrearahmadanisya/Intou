@@ -9,20 +9,25 @@ class BukuModel extends CI_Model
 		return $query->result_array();
 	}
 
+	public function getById($id)
+	{
+		$query = $this->db->query("SELECT * FROM buku WHERE idbuku = '" . $id . "'");
+		return $query->row_array();
+	}
+
 	public function addBuku($data)
 	{
-		$this->db->insert('buku', $data);
+		return $this->db->insert('buku', $data);
 	}
 
-	public function deleteBuku($id)
+	public function updateBuku($data, $id_Buku)
 	{
-		return $this->db->delete('buku', ['idbuku' => $id]);
+		$this->db->where('idbuku', $id_Buku);
+		return $this->db->update('buku', $data);
 	}
 
-	public function updateBuku($id, $data)
+	public function deleteBuku($id_Buku)
 	{
-
-		$this->db->where('idbuku', $id);
-		$this->db->update('buku', $data);
+		return $this->db->delete('buku', ['idbuku' => $id_Buku]);
 	}
 }

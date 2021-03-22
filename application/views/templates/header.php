@@ -23,7 +23,7 @@
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container">
-			<a class="navbar-brand">IntoU</a>
+			<img class="navbar-brand" height="70px" src="<?php echo base_url(); ?>assets/images/logo.png">
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -34,7 +34,7 @@
 				</div>
 			</div>
 			<div class="text-right" class="collapse navbar-collapse">
-				<?php if (isset($user['fullname'])) { ?>
+				<?php if (isset($user['username'])) { ?>
 					<a class="btn navbar-dark my-2 my-sm-0" href="<?= base_url('HomeController/logout'); ?>">Logout</a>
 				<?php } else { ?>
 					<a class="btn navbar-dark my-2 my-sm-0" href="<?= base_url('LoginController'); ?>">Login</a>
@@ -42,3 +42,4 @@
 			</div>
 		</div>
 	</nav>
+</body>
