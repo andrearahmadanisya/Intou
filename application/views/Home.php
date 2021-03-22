@@ -24,7 +24,7 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading"><img src="assets/pictures/logo.png" id="logo" /></div>
+      <div class="sidebar-heading"><img src="assets/images/logo.png" id="logo" /></div>
       <div class="list-group list-group-flush">
         <a href="#" class="list-group-item list-group-item-action bg-light">Home</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Data Buku</a>
