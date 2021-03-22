@@ -8,50 +8,57 @@
 	<title>Data Buku</title>
 </head>
 
-<body class="home">
+<body>
+	<section class="content-header">
+		<h3 class="text-center">Daftar Buku</h3>
+	</section>
 	<div class="container">
-		<div class="col">
-			<h3 class="text-center">Daftar Buku</h3>
-			<!-- <?php if (empty($buku)) : ?>
-				<div class="alert alert-danger" role="alert">
-					Data tidak ditemukan
-				</div>
-			<?php endif; ?> -->
+		<div class="navbar-form navbar-right">
+			<form action="<?= site_url('BukuController/SearchBuku') ?>" method="post" accept-charset="utf-8">
+				<input type="text" name="keyword" class="form-control" placeholder="Search">
+				<button type="submit" class="btn btn-success">cari</button>
+			</form>
+		</div>
 
-			<table class="table mt-5">
-				<thead>
+
+		<table class="table mt-5">
+			<thead>
+				<tr>
+					<th class="text-center" scope="col">judul</th>
+					<th class="text-center" scope="col">category</th>
+					<th class="text-center" scope="col">penulis</th>
+					<th class="text-center" scope="col">Total</th>
+					<th class="text-center" scope="col">tglmasuk</th>
+					<th class="text-center" scope="col">hargajual</th>
+					<th class="text-center" scope="col">hargabeli</th>
+					<th class="text-center" scope="col">AKSI</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($buku as $bk) { ?>
 					<tr>
-						<th class="text-center" scope="col">judul</th>
-						<th class="text-center" scope="col">category</th>
-						<th class="text-center" scope="col">penulis</th>
-						<th class="text-center" scope="col">tglmasuk</th>
-						<th class="text-center" scope="col">hargajual</th>
-						<th class="text-center" scope="col">hargabeli</th>
-						<th class="text-center" scope="col">AKSI</th>
+						<td><?= $bk['judul'] ?></td>
+						<td><?= $bk['category'] ?></td>
+						<td><?= $bk['penulis'] ?></td>
+						<td><?= $bk['total'] ?></td>
+						<td><?= $bk['tglmasuk'] ?></td>
+						<td><?= $bk['hargajual'] ?></td>
+						<td><?= $bk['hargabeli'] ?></td>
+						<td>
+							<a type="button" class="btn btn-danger btn-sm" href="<?php echo base_url() . 'BukuController/delete/' . $bk['idbuku'] ?>" onClick="return confirm('Apakah Anda Yakin?')">Delete</a>
+							<a type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Updatebk<?= $bk['idbuku'] ?>"> Update</a>
+						</td>
 					</tr>
-				</thead>
-				<tbody>
-					<tr><?php foreach ($buku as $bk) { ?>
-							<td class="text-center"><?= $bk['judul']; ?></td>
-							<td class="text-center"><?= $bk['category']; ?></td>
-							<td class="text-center"><?= $bk['penulis']; ?></td>
-							<td class="text-center"><?= $bk['tglmasuk']; ?></td>
-							<td class="text-center"><?= $bk['hargajual']; ?></td>
-							<td class="text-center"><?= $bk['hargabeli']; ?></td>
-							<td>
-								<a type="button" class="btn btn-danger btn-sm" href="<?php echo base_url() . 'BukuController/delete/' . $bk['idbuku'] ?>" onClick="return confirm('Apakah Anda Yakin?')">Delete</a>
-
-								<a type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#UpdateBK<?= $bk['idbuku'] ?>"> Update</a>
-							</td>
-					</tr><?php } ?>
-				</tbody>
-			</table>
-			<div class="row mt-3">
-				<div class="col md-6 text-center mt-5">
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit1">TAMBAH</button>
-				</div>
+				<?php } ?>
+			</tbody>
+		</table>
+		<div class="row mt-3">
+			<div class="col md-6 text-center mt-5">
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit1">TAMBAH</button>
 			</div>
-
+			<div class="back text-left">
+				<a class="btn btn-secondary btn-sm active" href="<?= base_url() ?>BukuController">back</a>
+			</div>
 		</div>
 	</div>
 	</div>
@@ -76,7 +83,10 @@
 							<input type="text" class="form-control" placeholder="Penulis" name="penulis">
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="tglmasuk" name="tglmasuk">
+							<input type="text" class="form-control" placeholder="Total" name="total">
+						</div>
+						<div class="form-group">
+							<input type="datetime" class="form-control" placeholder="tglmasuk" name="tglmasuk">
 						</div>
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="hargajual" name="hargajual">
@@ -93,8 +103,9 @@
 			</div>
 		</div>
 	</div>
+
 	<?php foreach ($buku as $bk) { ?>
-		<div class="modal fade" id="UpdateBK<?= $bk['idbuku'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+		<div class="modal fade" id="Updatebk<?= $bk['idbuku'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -125,7 +136,11 @@
 								<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Harga Jual" name="hargajual" value="<?= $bk['hargajual'] ?>" required>
 							</div>
 							<div class="form-group">
-								<label for="formGroupExampleInput">Harga Belli</label>
+								<label for="formGroupExampleInput">Total</label>
+								<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Total" name="total" value="<?= $bk['total'] ?>" required>
+							</div>
+							<div class="form-group">
+								<label for="formGroupExampleInput">Harga Beli</label>
 								<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Harga Beli" name="hargabeli" value="<?= $bk['hargabeli'] ?>" required>
 							</div>
 							<div class="modal-footer">
