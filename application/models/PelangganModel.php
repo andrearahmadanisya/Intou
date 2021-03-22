@@ -30,4 +30,15 @@ class PelangganModel extends CI_Model
 	{
 		return $this->db->delete('pelanggan', ['idpelanggan' => $id_Pelanggan]);
 	}
+	public function get_keyword($keyword)
+	{
+		$this->db->select('*');
+		$this->db->from('pelanggan');
+		$this->db->like('Namapelanggan', $keyword);
+		$this->db->or_like('alamatpelanggan', $keyword);
+		$this->db->or_like('contactpelanggan', $keyword);
+		$this->db->or_like('emailpelanggan', $keyword);
+		$this->db->or_like('kotapelanggan', $keyword);
+		return $this->db->get()->result_array();
+	}
 }
