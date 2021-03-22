@@ -14,7 +14,7 @@
     
 		<div class= "loginbox">
 			<h1>USER LOGIN</h1>
-				<form action="<?= base_url() ?>HomeController" method="post" accept-charset="utf-8" class="login__form">
+				<form action="<?= base_url() ?>LoginController" method="post" accept-charset="utf-8" class="login__form">
 				<input type="text" name="username" placeholder="Username">
 				<input type="password" name="password" placeholder="Password">
 				<input type="submit" name="login" value="Login">
