@@ -1,47 +1,120 @@
 <?php
 
-class BukuModel extends CI_Model
+class BukuController extends CI_Controller
 {
-	public function getAllBuku()
+	public function __construct()
 	{
-		// get all data
-		$query = $this->db->query("SELECT * FROM buku");
-		return $query->result_array();
+		parent::__construct();
+		// load BukuMode
+		$this->load->model('BukuModel');
+		$this->load->library('form_validation');
 	}
 
-	public function getById($id)
+	public function index()
 	{
-		$query = $this->db->query("SELECT * FROM buku WHERE idbuku = '" . $id . "'");
-		return $query->row_array();
+		$data['judul'] = 'Data Buku';
+		$data['user'] = $this->session->userdata('user');
+
+		$data['buku'] = $this->BukuModel->getAllBuku();
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('Buku', $data);
+		$this->load->view('templates/footer');
 	}
 
-	public function addBuku($data)
+	public function addBuku()
 	{
-		return $this->db->insert('buku', $data);
+		$this->form_validation->set_rules('judul', 'judul', 'required');
+		$this->form_validation->set_rules('category', 'category', 'required');
+		$this->form_validation->set_rules('penulis', 'penulis', 'required');
+		$this->form_validation->set_rules('total', 'total', 'required');
+		$this->form_validation->set_rules('tglmasuk', 'tglmasuk', 'required');
+		$this->form_validation->set_rules('hargajual', 'hargajual', 'required');
+		$this->form_validation->set_rules('hargabeli', 'hargabeli', 'required');
+
+		if ($this->form_validation->run() == FALSE) {
+			$data['judul'] = 'Data Buku';
+			$data['buku'] = $this->BukuModel->getAllBuku();
+
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('Buku');
+			$this->load->view('templates/footer');
+		} else {
+			$add = [
+				"idbuku" => '',
+				"judul" => $this->input->post('judul', true),
+				"category" => $this->input->post('category', true),
+				"penulis" => $this->input->post('penulis', true),
+				"total" => $this->input->post('total', true),
+				"tglmasuk" => $this->input->post('tglmasuk', true),
+				"hargajual" => $this->input->post('hargajual', true),
+				"hargabeli" => $this->input->post('hargabeli', true)
+			];
+			$this->BukuModel->addBuku($add);
+			// load Bukucon
+
+		}
+		redirect('BukuController');
 	}
 
-	public function updateBuku($id_Buku, $data)
+	public function delete($id)
 	{
-		$this->db->where('idbuku', $id_Buku);
-		return $this->db->update('buku', $data);
+		$this->BukuModel->deleteBuku($id);
+		redirect('BukuController');
 	}
 
-	public function deleteBuku($id_Buku)
+	public function cari()
 	{
-		return $this->db->delete('buku', ['idbuku' => $id_Buku]);
+		$data['judul'] = 'Data Buku';
+		$data['buku'] = $this->BukuModel->getAllBuku();
+
+		if ($this->input->post('submit')) {
+			$data['keyword'] = $this->input->post('keyword');
+		} else {
+			$data['keyword'] = null;
+		}
+		redirect('BukuController');
+	}
+	public function update($id)
+	{
+		$data['judul'] = 'Buku';
+		$data['buku'] = $this->BukuModel->getAllBuku();
+
+		//from library form_validation
+		$this->form_validation->set_rules('judul', 'judul', 'required');
+		$this->form_validation->set_rules('category', 'category', 'required');
+		$this->form_validation->set_rules('penulis', 'penulis', 'required');
+		$this->form_validation->set_rules('total', 'total', 'required');
+		$this->form_validation->set_rules('tglmasuk', 'tglmasuk', 'required');
+		$this->form_validation->set_rules('hargajual', 'hargajual', 'required');
+		$this->form_validation->set_rules('hargabeli', 'hargabeli', 'required');
+
+		if ($this->form_validation->run() == false) {
+
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('Buku', $data);
+			$this->load->view('templates/footer');
+		} else {
+			$update = [
+				"idbuku" => $id,
+				"judul" => $this->input->post('judul', true),
+				"category" => $this->input->post('category', true),
+				"penulis" => $this->input->post('penulis', true),
+				"total" => $this->input->post('total', true),
+				"tglmasuk" => $this->input->post('tglmasuk', true),
+				"hargajual" => $this->input->post('hargajual', true),
+				"hargabeli" => $this->input->post('hargabeli', true)
+			];
+			$this->BukuModel->updateBuku($id, $update);
+			redirect('BukuController');
+		}
 	}
 
-	public function get_keyword($keyword)
+	public function SearchBuku()
 	{
-		$this->db->select('*');
-		$this->db->from('buku');
-		$this->db->like('judul', $keyword);
-		$this->db->or_like('category', $keyword);
-		$this->db->or_like('penulis', $keyword);
-		$this->db->or_like('total', $keyword);
-		$this->db->or_like('tglmasuk', $keyword);
-		$this->db->or_like('hargajual', $keyword);
-		$this->db->or_like('hargabeli', $keyword);
-		return $this->db->get()->result_array();
+		$keyword = $this->input->post('keyword');
+		$data['buku'] = $this->BukuModel->get_keyword($keyword);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('Buku', $data);
+		$this->load->view('templates/footer');
 	}
 }
