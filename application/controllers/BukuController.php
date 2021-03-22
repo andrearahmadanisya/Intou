@@ -16,7 +16,7 @@ class BukuController extends CI_Controller
 		$data['user'] = $this->session->userdata('user');
 
 		$data['buku'] = $this->BukuModel->getAllBuku();
-		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
 		$this->load->view('Buku', $data);
 		$this->load->view('templates/footer');
 	}
@@ -34,7 +34,7 @@ class BukuController extends CI_Controller
 			$data['judul'] = 'Rumah Sakit';
 			$data['buku'] = $this->BukuModel->getAllBuku();
 
-			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
 			$this->load->view('Buku');
 			$this->load->view('templates/footer');
 		} else {
@@ -75,7 +75,7 @@ class BukuController extends CI_Controller
 
 		if ($this->form_validation->run() == false) {
 
-			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
 			$this->load->view('Buku', $data);
 			$this->load->view('templates/footer');
 		} else {
