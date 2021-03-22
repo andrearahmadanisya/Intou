@@ -20,7 +20,7 @@ class BukuModel extends CI_Model
 		return $this->db->insert('buku', $data);
 	}
 
-	public function updateBuku($data, $id_Buku)
+	public function updateBuku($id_Buku, $data)
 	{
 		$this->db->where('idbuku', $id_Buku);
 		return $this->db->update('buku', $data);
@@ -29,5 +29,19 @@ class BukuModel extends CI_Model
 	public function deleteBuku($id_Buku)
 	{
 		return $this->db->delete('buku', ['idbuku' => $id_Buku]);
+	}
+
+	public function get_keyword($keyword)
+	{
+		$this->db->select('*');
+		$this->db->from('buku');
+		$this->db->like('judul', $keyword);
+		$this->db->or_like('category', $keyword);
+		$this->db->or_like('penulis', $keyword);
+		$this->db->or_like('total', $keyword);
+		$this->db->or_like('tglmasuk', $keyword);
+		$this->db->or_like('hargajual', $keyword);
+		$this->db->or_like('hargabeli', $keyword);
+		return $this->db->get()->result_array();
 	}
 }
