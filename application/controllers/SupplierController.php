@@ -88,4 +88,13 @@ class SupplierController extends CI_Controller
 			redirect('SupplierController');
 		}
 	}
+	
+	public function SearchSupplier()
+	{
+		$keyword = $this->input->post('keyword');
+		$data['supplier'] = $this->SupplierModel->get_keyword($keyword);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('Supplier', $data);
+		$this->load->view('templates/footer');
+	}
 }
