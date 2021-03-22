@@ -1,52 +1,64 @@
-.carousel-inner img {
-    height: 500px;
-    
+ #home {
+  background-color: #f2f5fa;
+ }
+ 
+ #wrapper {
+    overflow-x: hidden;
+ }
+
+ #logo {
+  width: 200px;
+  height: 55px;
+ }
+
+#isi {
+  margin-top: 500px: 
 }
 
-.home .thumbnail {
-    margin-top: 30px;
+ #navbarSupportedContent {
+  background-color: #f2f5fa;
+ }
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+  background-color: #ffffff;
 }
 
-.home .about {
-    margin-top: 35px;
-    text-align: justify;
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
 }
 
-.home  #carouselExampleIndicators{
-    margin-top: 50px;
+#sidebar-wrapper .list-group {
+  width: 15rem;
 }
 
-.home .tips h2{
-    margin-top: 30px;
-    margin-bottom: 30px;
+#page-content-wrapper {
+  min-width: 100vw;
+  background-color: #f2f5fa;
 }
 
-.home .card{
-
-    padding:0px;
-} 
-
-.home .kiri{
-    margin-left: 80px;
-    width: 30rem;
-    height: 15rem;
-    background: #8B008B;
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
 }
 
-.home .kanan{
-    margin-left: 50x;
-    width: 30rem;
-    height: 15rem;
-    background: #DAA520;
-}
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
 
-.home .card-body{
-    margin-top: 20px;
-    text-align: justify;
-    color: white;
-}
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+    background-color: #f2f5fa;
+  }
 
-.home .link-h{
-    color: white;
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
 }
-
