@@ -19,9 +19,7 @@ class LoginController extends CI_Controller
 		$this->form_validation->set_rules('password', 'password', 'required');
 
 		if ($this->form_validation->run() == false) {
-			$this->load->view('templates/header', $data);
 			$this->load->view('Login');
-			$this->load->view('templates/footer');
 		} else {
 			$uname = $this->input->post('username', true);
 			$user = $this->AccountModel->getAccountByUsername($uname);

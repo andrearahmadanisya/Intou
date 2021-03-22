@@ -15,7 +15,7 @@ class HomeController extends CI_Controller
 		$data['judul'] = 'Home';
 		$data['user'] = $this->session->userdata('user');
 
-		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
 		$this->load->view('Home', $data);
 		$this->load->view('templates/footer');
 	}
@@ -23,7 +23,7 @@ class HomeController extends CI_Controller
 	public function login()
 	{
 		$data['judul'] = 'Login';
-		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
 		$this->load->view('Login');
 		$this->load->view('templates/footer');
 	}
