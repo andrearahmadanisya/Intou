@@ -85,4 +85,13 @@ class PelangganController extends CI_Controller
 			redirect('PelangganController');
 		}
 	}
+	
+	public function SearchPelanggan()
+	{
+		$keyword = $this->input->post('keyword');
+		$data['pelanggan'] = $this->PelangganModel->get_keyword($keyword);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('Pelanggan', $data);
+		$this->load->view('templates/footer');
+	}
 }
