@@ -16,7 +16,7 @@
     
 		<div class= "loginbox">
 			<h1>USER LOGIN</h1>
-				<form action="" method="post" class="login__form">
+				<form action="<?= site_url('LoginController'); ?>" method="post" class="login__form">
 				<input type="text" name="username" placeholder="Username">
 				<input type="password" name="password" placeholder="Password">
 				<button type="submit" name="login">Login</button>
