@@ -7,17 +7,19 @@
 	<title>Login | INTOU</title>
 </head>
 <body>
-	<div class="pertama" style="background-image: url('assets/images/bg2.png');">
+	<div class="pertama" style="background-image: url('assets/images/newbg.jpg');">
+	
     <div class="gambar1">
-			<img src="assets/images/login1.png">
+		<h2>WELCOME TO INTOU WEBSITE</h2>
+		<img src="assets/images/login1.png">
     </div>
     
 		<div class= "loginbox">
 			<h1>USER LOGIN</h1>
-				<form action="<?= base_url() ?>LoginController" method="post" accept-charset="utf-8" class="login__form">
+				<form action="" method="post" class="login__form">
 				<input type="text" name="username" placeholder="Username">
 				<input type="password" name="password" placeholder="Password">
-				<input type="submit" name="login" value="Login">
+				<button type="submit" name="login">Login</button>
 			</form>
 		</div>
 	</div>
