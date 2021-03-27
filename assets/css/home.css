@@ -132,3 +132,24 @@
   padding-right: 2px;
   margin-left: 2px;
 }
+
+.breadcrumb {
+  background-color: #ffffff;
+}
+
+.container {
+  padding-bottom: 50px;
+  margin-right: 10px;
+}
+
+.buatbutton{
+  margin-top: 10px;
+}
+
+h2 {
+  margin-right: 15px;
+}
+
+span {
+  font-size: 14px;
+}
