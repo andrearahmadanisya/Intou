@@ -182,9 +182,9 @@
           <div class="col-sm-4">
             <!-- SEARCH -->
             <form action="<?= site_url('BukuController/SearchBuku') ?>" method="post">
-              <div class="form-group row">
-                <label class="col-sm-3 text-secondary h6" for="Search">Search</label>
-                <input class="form-control col-sm" name="keyword" type="text" aria-label="Search" style="margin-top:-6px; margin-left:-20px; height:35px">
+              <div class="input-group" style="margin-top: -7px">
+                <input type="text" name="keyword" class="form-control rounded" aria-label="Search" aria-describedby="search-addon" />
+                <button type="submit" class="btn btn-outline-secondary">search</button>
               </div>
             </form>
           </div>
