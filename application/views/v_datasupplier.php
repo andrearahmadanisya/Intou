@@ -49,8 +49,8 @@
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-          <a href="" style="color:black">Transaksi Barang Masuk</a><br><br>
-          <a href="" style="color:black">Transaksi Penjualan</a>
+          <a href="#" style="color:black">Transaksi Barang Masuk</a><br><br>
+          <a href="#" style="color:black">Transaksi Penjualan</a>
         </div>
 
         <button class="dropdown-btn">
@@ -58,8 +58,8 @@
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-          <a href="" style="color:black">Laporan Pembelian</a><br><br>
-          <a href="" style="color:black">Laporan Penjualan</a>
+          <a href="#" style="color:black">Laporan Pembelian</a><br><br>
+          <a href="#" style="color:black">Laporan Penjualan</a>
         </div>
       </div>
     </div>
