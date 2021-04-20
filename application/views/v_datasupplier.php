@@ -249,7 +249,7 @@
                               <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
                             </li>
                             <li class="list-inline-item">
-                              <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                              <a class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" href="<?php echo base_url() . 'SupplierController/delete/' . $sp['idsupplier'] ?>" data-placement="top" title="Delete" onClick="return confirm('Apakah Anda Yakin?')"><i class="fa fa-trash"></i></a>
                             </li>
                           </ul>
 
