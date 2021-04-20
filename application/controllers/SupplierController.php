@@ -16,9 +16,7 @@ class SupplierController extends CI_Controller
 		$data['user'] = $this->session->userdata('user');
 
 		$data['supplier'] = $this->SupplierModel->getAllSupplier();
-		$this->load->view('templates/sidebar', $data);
-		$this->load->view('Supplier', $data);
-		$this->load->view('templates/footer');
+		$this->load->view('v_datasupplier', $data);
 	}
 
 	public function addSupplier()
@@ -33,9 +31,7 @@ class SupplierController extends CI_Controller
 			$data['judul'] = 'Supplier';
 			$data['supplier'] = $this->SupplierModel->getAllSupplier();
 
-			$this->load->view('templates/sidebar', $data);
-			$this->load->view('Supplier');
-			$this->load->view('templates/footer');
+			$this->load->view('v_datasupplier');
 		} else {
 			$add = [
 				"idSupplier" => '',
@@ -72,9 +68,7 @@ class SupplierController extends CI_Controller
 
 		if ($this->form_validation->run() == false) {
 
-			$this->load->view('templates/sidebar', $data);
-			$this->load->view('Supplier', $data);
-			$this->load->view('templates/footer');
+			$this->load->view('v_datasupplier', $data);
 		} else {
 			$update = [
 				"idsupplier" => $id,
@@ -88,13 +82,11 @@ class SupplierController extends CI_Controller
 			redirect('SupplierController');
 		}
 	}
-	
+
 	public function SearchSupplier()
 	{
 		$keyword = $this->input->post('keyword');
 		$data['supplier'] = $this->SupplierModel->get_keyword($keyword);
-		$this->load->view('templates/sidebar', $data);
-		$this->load->view('Supplier', $data);
-		$this->load->view('templates/footer');
+		$this->load->view('v_datasupplier', $data);
 	}
 }
