@@ -15,7 +15,6 @@ class PelangganController extends CI_Controller
 		$data['user'] = $this->session->userdata('user');
 
 		$data['pelanggan'] = $this->PelangganModel->getAllPelanggan();
-		$this->load->view('templates/sidebar', $data);
 		$this->load->view('Pelanggan', $data);
 		$this->load->view('templates/footer');
 	}
@@ -32,7 +31,6 @@ class PelangganController extends CI_Controller
 			$data['judul'] = 'Data Pelanggan';
 			$data['pelanggan'] = $this->PelangganModel->getAllPelanggan();
 
-			$this->load->view('templates/sidebar', $data);
 			$this->load->view('Pelanggan');
 			$this->load->view('templates/footer');
 		} else {
@@ -69,7 +67,6 @@ class PelangganController extends CI_Controller
 
 		if ($this->form_validation->run() == false) {
 
-			$this->load->view('templates/sidebar', $data);
 			$this->load->view('Pelanggan', $data);
 			$this->load->view('templates/footer');
 		} else {
@@ -85,12 +82,11 @@ class PelangganController extends CI_Controller
 			redirect('PelangganController');
 		}
 	}
-	
+
 	public function SearchPelanggan()
 	{
 		$keyword = $this->input->post('keyword');
 		$data['pelanggan'] = $this->PelangganModel->get_keyword($keyword);
-		$this->load->view('templates/sidebar', $data);
 		$this->load->view('Pelanggan', $data);
 		$this->load->view('templates/footer');
 	}
