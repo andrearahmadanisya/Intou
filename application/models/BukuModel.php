@@ -2,6 +2,8 @@
 
 class BukuModel extends CI_Model
 {
+	// protected $datestring = 'Year: %Y Month: %m Day: %d - %h:%i %a';
+	// protected $time = time();
 	public function getAllBuku()
 	{
 		// get all data
@@ -28,7 +30,7 @@ class BukuModel extends CI_Model
 
 	public function deleteBuku($id_Buku)
 	{
-		return $this->db->delete('buku', ['idbuku' => $id_Buku]);
+		$this->db->delete('buku', ['idbuku' => $id_Buku]);
 	}
 
 	public function get_keyword($keyword)
