@@ -15,32 +15,30 @@ class PelangganController extends CI_Controller
 		$data['user'] = $this->session->userdata('user');
 
 		$data['pelanggan'] = $this->PelangganModel->getAllPelanggan();
-		$this->load->view('Pelanggan', $data);
-		$this->load->view('templates/footer');
+		$this->load->view('v_datapelanggan', $data);
 	}
 
 	public function addPelanggan()
 	{
 		$this->form_validation->set_rules('namapelanggan', 'namapelanggan', 'required');
 		$this->form_validation->set_rules('alamatpelanggan', 'alamatpelanggan', 'required');
-		$this->form_validation->set_rules('contactpelanggan', 'contactpelanggan', 'required');
-		$this->form_validation->set_rules('emailpelanggan', 'emailpelanggan', 'required');
 		$this->form_validation->set_rules('kotapelanggan', 'kotapelanggan', 'required');
+		$this->form_validation->set_rules('emailpelanggan', 'emailpelanggan', 'required');
+		$this->form_validation->set_rules('contactpelanggan', 'contactpelanggan', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
 			$data['judul'] = 'Data Pelanggan';
 			$data['pelanggan'] = $this->PelangganModel->getAllPelanggan();
 
-			$this->load->view('Pelanggan');
-			$this->load->view('templates/footer');
+			$this->load->view('v_datapelanggan');
 		} else {
 			$add = [
 				"idpelanggan" => '',
 				"namapelanggan" => $this->input->post('namapelanggan', true),
 				"alamatpelanggan" => $this->input->post('alamatpelanggan', true),
-				"contactpelanggan" => $this->input->post('contactpelanggan', true),
-				"emailpelanggan" => $this->input->post('emailpelanggan', true),
 				"kotapelanggan" => $this->input->post('kotapelanggan', true),
+				"emailpelanggan" => $this->input->post('emailpelanggan', true),
+				"contactpelanggan" => $this->input->post('contactpelanggan', true),
 			];
 			$this->PelangganModel->addPelanggan($add);
 		}
@@ -61,22 +59,21 @@ class PelangganController extends CI_Controller
 		//from library form_validation
 		$this->form_validation->set_rules('namapelanggan', 'namapelanggan', 'required');
 		$this->form_validation->set_rules('alamatpelanggan', 'alamatpelanggan', 'required');
-		$this->form_validation->set_rules('contactpelanggan', 'contactpelanggan', 'required');
-		$this->form_validation->set_rules('emailpelanggan', 'emailpelanggan', 'required');
 		$this->form_validation->set_rules('kotapelanggan', 'kotapelanggan', 'required');
+		$this->form_validation->set_rules('emailpelanggan', 'emailpelanggan', 'required');
+		$this->form_validation->set_rules('contactpelanggan', 'contactpelanggan', 'required');
 
 		if ($this->form_validation->run() == false) {
 
-			$this->load->view('Pelanggan', $data);
-			$this->load->view('templates/footer');
+			$this->load->view('v_datapelanggan', $data);
 		} else {
 			$update = [
-				"idpelanggan" => '',
+				"idpelanggan" => $id,
 				"namapelanggan" => $this->input->post('namapelanggan', true),
 				"alamatpelanggan" => $this->input->post('alamatpelanggan', true),
-				"contactpelanggan" => $this->input->post('contactpelanggan', true),
-				"emailpelanggan" => $this->input->post('emailpelanggan', true),
 				"kotapelanggan" => $this->input->post('kotapelanggan', true),
+				"emailpelanggan" => $this->input->post('emailpelanggan', true),
+				"contactpelanggan" => $this->input->post('contactpelanggan', true),
 			];
 			$this->PelangganModel->updatePelanggan($id, $update);
 			redirect('PelangganController');
@@ -87,7 +84,6 @@ class PelangganController extends CI_Controller
 	{
 		$keyword = $this->input->post('keyword');
 		$data['pelanggan'] = $this->PelangganModel->get_keyword($keyword);
-		$this->load->view('Pelanggan', $data);
-		$this->load->view('templates/footer');
+		$this->load->view('v_datapelanggan', $data);
 	}
 }
