@@ -15,8 +15,7 @@ class HomeController extends CI_Controller
 		$data['judul'] = 'Home';
 		$data['user'] = $this->session->userdata('user');
 
-		$this->load->view('Home', $data);
-		$this->load->view('templates/footer');
+		$this->load->view('v_home', $data);
 	}
 
 	public function login()
