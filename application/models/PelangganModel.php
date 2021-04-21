@@ -30,6 +30,7 @@ class PelangganModel extends CI_Model
 	{
 		return $this->db->delete('pelanggan', ['idpelanggan' => $id_Pelanggan]);
 	}
+
 	public function get_keyword($keyword)
 	{
 		$this->db->select('*');
