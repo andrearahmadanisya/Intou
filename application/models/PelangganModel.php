@@ -1,45 +1,45 @@
 <?php
 
-class PelangganModel extends CI_Model
+class SupplierModel extends CI_Model
 {
-	public function getAllPelanggan()
+	public function getAllSupplier()
 	{
 		// get all data
-		$query = $this->db->query("SELECT * FROM pelanggan");
+		$query = $this->db->query("SELECT * FROM supplier");
 		return $query->result_array();
 	}
 
 	public function getById($id)
 	{
-		$query = $this->db->query("SELECT * FROM pelanggan WHERE idpelanggan = '" . $id . "'");
+		$query = $this->db->query("SELECT * FROM supplier WHERE idsupplier = '" . $id . "'");
 		return $query->row_array();
 	}
 
-	public function addPelanggan($data)
+	public function addSupplier($data)
 	{
-		return $this->db->insert('pelanggan', $data);
+		return $this->db->insert('supplier', $data);
 	}
 
-	public function updatePelanggan($id_Pelanggan, $data)
+	public function updateSupplier($idsupplier, $data)
 	{
-		$this->db->where('idpelanggan', $id_Pelanggan);
-		return $this->db->update('pelanggan', $data);
+		$this->db->where('idsupplier', $idsupplier);
+		return $this->db->update('supplier', $data);
 	}
 
-	public function deletePelanggan($id_Pelanggan)
+	public function deleteSupplier($idsupplier)
 	{
-		return $this->db->delete('pelanggan', ['idpelanggan' => $id_Pelanggan]);
+		return $this->db->delete('supplier', ['idsupplier' => $idsupplier]);
 	}
-
+	
 	public function get_keyword($keyword)
 	{
 		$this->db->select('*');
-		$this->db->from('pelanggan');
-		$this->db->like('Namapelanggan', $keyword);
-		$this->db->or_like('alamatpelanggan', $keyword);
-		$this->db->or_like('contactpelanggan', $keyword);
-		$this->db->or_like('emailpelanggan', $keyword);
-		$this->db->or_like('kotapelanggan', $keyword);
+		$this->db->from('supplier');
+		$this->db->like('Namasupplier', $keyword);
+		$this->db->or_like('alamatsupplier', $keyword);
+		$this->db->or_like('contactsupplier', $keyword);
+		$this->db->or_like('emailsupplier', $keyword);
+		$this->db->or_like('kotasupplier', $keyword);
 		return $this->db->get()->result_array();
 	}
 }
