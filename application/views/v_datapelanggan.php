@@ -8,15 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>IntoU | Home</title>
+
+    <title>IntoU | Data Pelanggan</title>
+
     <!-- Bootstrap CSS -->
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
     </svg>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
     <!-- styles template -->
     <link href="assets/css/datasupplier.css" rel="stylesheet">
+
 </head>
 
 <body id="home">
@@ -147,123 +151,150 @@
                 </ol>
             </nav>
             <!-- END BEB -->
-            <h2 style="margin-left:18px; margin-bottom:35px;">DATA PELANGGAN</h2>
-            <!-- BUTTON -->
-            <div style="margin-bottom:35px; margin-left:18px;">
-                <button type="button" class="btn btn-secondary">Tambah Data</button>
-            </div>
-            <!-- END BUTTON -->
-            <!-- BUAT TABEL -->
             <div class="container-fluid">
-                <!-- Research -->
 
-                <div class="row">
-                    <div class="col-sm-4">
-                        <!-- SEARCH -->
-                        <div class="form-group row">
-                            <label class="col-sm-3 text-secondary h6" for="Search">Search</label>
-                            <input class="form-control col-sm" type="text" aria-label="Search" style="margin-top:-6px; margin-left:-20px; height:35px">
-                        </div>
+                <h2 style="margin-left:18px; margin-bottom:35px;">DATA PELANGGAN</h2>
+                <!-- BUTTON -->
+                <div style="margin-bottom:35px; margin-left:18px;">
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#TambahP">Tambah Data</button>
+                </div>
+                <!-- END BUTTON -->
+
+                <!-- BUAT TABEL -->
+                <div class="container">
+                    <div class="box">
+                        <table class="table table-borderless table-hover" id="table">
+                            <thead style="background-color:#6C7C94; color:white">
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Alamat</th>
+                                    <th scope="col">Kota</th>
+                                    <th scope="col">Kontak</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $no = 1;
+                                foreach ($pelanggan as $pg) { ?>
+                                    <tr>
+                                        <!--HINT UNTUK MENGHAPUS USER KALIAN DAPAT MENGGUNAKAN FORM, MENGGUNAKAN ANCHOR ATAU HREF PADA BUTTON-->
+                                        <td class="text-center"><?php echo $no++ ?></td>
+                                        <td class="text-center"><?php echo $pg['idpelanggan']; ?></td>
+                                        <td class="text-center"><?php echo $pg['namapelanggan']; ?></td>
+                                        <td class="text-center"><?php echo $pg['alamatpelanggan']; ?></td>
+                                        <td class="text-center"><?php echo $pg['kotapelanggan']; ?></td>
+                                        <td class="text-center"><?php echo $pg['contactpelanggan']; ?></td>
+                                        <td class="text-center"><?php echo $pg['emailpelanggan']; ?></td>
+                                        <td class="text-center">
+                                            <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="modal" data-target="#Updatepg<?= $pg['idpelanggan'] ?>" title="Edit"><i class="fa fa-edit"></i></button>
+                                            <a class="btn btn-danger btn-sm rounded-0" type="button" href="<?php echo base_url() . 'PelangganController/delete/' . $pg['idpelanggan'] ?>" onClick="return confirm('Apakah Anda Yakin?')"><i class="fa fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-3">
-                        <div class="form-group row">
-                            <label class="col-sm-4 text-secondary h6" for="Search">Sort by</label>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top:-6px">
-                                    Latest
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Latest</a>
-                                    <a class="dropdown-item" href="#">Newest</a>
-                                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit dan tambah -->
+    <div class="modal fade" id="TambahP" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <center>
+                        <h2>TAMBAH DATA pelanggan</h2>
+                    </center>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="<?= base_url() ?>PelangganController/addPelanggan">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nama pelanggan" name="namapelanggan" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Alamat pelanggan" name="alamatpelanggan" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Kota pelanggan" name="kotapelanggan">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Email pelanggan" name="emailpelanggan">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Contact pelanggan" name="contactpelanggan">
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-primary" id="hapus" value="Submit" placeholder="Simpan">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- EDIT -->
+    <?php foreach ($pelanggan as $pg) { ?>
+        <div class="modal fade" id="Updatepg<?= $pg['idpelanggan'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <center>
+                            <h2>EDIT DATA pelanggan</h2>
+                        </center>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="<?= base_url() . 'PelangganController/update/' . $pg['idpelanggan'] ?>">
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Nama pelanggan</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nama pelanggan" name="namapelanggan" value="<?= $pg['namapelanggan'] ?>" required>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group row">
-                            <label class="col-sm-3 text-secondary h6" for="Search">Show</label>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top:-6px">
-                                    10
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">10</a>
-                                    <a class="dropdown-item" href="#">20</a>
-                                    <a class="dropdown-item" href="#">All</a>
-                                </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Alamat pelanggan</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Alamat pelanggan" name="alamatpelanggan" value="<?= $pg['alamatpelanggan'] ?>" required>
                             </div>
-                        </div>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="col-lg-1"></div>
-                        <div class="col-lg-20">
-                            <div class="row" style="padding-top: 10px; padding-left:12px; padding-right:12px">
-                                <table class="table table-hover">
-                                    <thead class="table-light" style="background-color:#6C7C94; color:white">
-                                        <tr>
-                                            <th scope="col">No.</th>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">Nama</th>
-                                            <th scope="col">Alamat</th>
-                                            <th scope="col">Kota</th>
-                                            <th scope="col">Kontak</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody style="background-color: white">
-                                        <tr><?php foreach ($pelanggan as $pg) { ?>
-                                                <th scope="row">1</th>
-                                                <td><?= $pg['idpelanggan']; ?></td>
-                                                <td><?= $pg['namapelanggan']; ?></td>
-                                                <td><?= $pg['alamatpelanggan']; ?></td>
-                                                <td><?= $pg['kotapelanggan']; ?></td>
-                                                <td><?= $pg['contactpelanggan']; ?></td>
-                                                <td><?= $pg['emailpelanggan']; ?></td>
-                                                <td>
-                                                    <!-- Call to action buttons -->
-                                                    <ul class="list-inline m-0">
-                                                        <li class="list-inline-item">
-                                                            <a class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <a class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" href="<?php echo base_url() . 'PelangganController/delete/' . $pg['idpelanggan'] ?>" onClick="return confirm('Apakah Anda Yakin?')"><i class="fa fa-trash"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                        </tr><?php } ?>
-                                    </tbody>
-                                </table>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Kota pelanggan</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Kota pelanggan" name="kotapelanggan" value="<?= $pg['kotapelanggan'] ?>" required>
                             </div>
-
-
-                        </div>
-                        <!-- /#page-konten-wrapper -->
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Email pelanggan</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="TEmail pelanggan" name="emailpelanggan" value="<?= $pg['emailpelanggan'] ?>" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Contact pelanggan</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Contact pelanggan" name="contactpelanggan" value="<?= $pg['contactpelanggan'] ?>" required>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" class="btn btn-primary" id="hapus" value="Submit" placeholder="Simpan">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                            </div>
+                        </form>
                     </div>
-                    <!-- /#wrapper -->
-
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination" style="margin-left:12px">
-                            <li class="page-item right"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                        </ul>
-                    </nav>
-                    <!-- Bootstrap JavaScript -->
-                    <script src="assets/jquery/jquery.min.js"></script>
-                    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-                    <!-- Menu Script -->
-                    <script>
-                        $("#menu-toggle").click(function(e) {
-                            e.preventDefault();
-                            $("#wrapper").toggleClass("toggled");
-                        });
-                    </script>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
 </body>
+<!-- Bootstrap JavaScript -->
+<script src="assets/jquery/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+<!-- Menu Script -->
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    $(document).ready(function() {
+        $('#table').DataTable();
+    });
+</script>
 
 </html>
