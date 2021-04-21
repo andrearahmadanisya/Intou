@@ -7,7 +7,9 @@ class BukuController extends CI_Controller
 		parent::__construct();
 		// load BukuMode
 		$this->load->model('BukuModel');
+		$this->load->model('HistoryModel');
 		$this->load->library('form_validation');
+		$this->load->helper('date');
 	}
 
 	public function index()
@@ -54,7 +56,11 @@ class BukuController extends CI_Controller
 
 	public function delete($id)
 	{
+		$buku = $this->BukuModel->getById($id);
+		$this->HistoryModel->addHistory($buku);
 		$this->BukuModel->deleteBuku($id);
+
+		// $this->BukuModel->deleteBuku($id);
 		redirect('BukuController');
 	}
 
