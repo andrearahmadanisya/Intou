@@ -8,8 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>IntoU | Home</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+  <title>IntoU | Data Supplier</title>
 
   <!-- Bootstrap CSS -->
   <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -32,7 +32,7 @@
       <div class="sidebar-heading"><img src="assets/images/logo.png" id="logo" /></div>
       <div class="list-group list-group-flush">
         <a href="<?= base_url('HomeController'); ?>" class="item list-group-item-action bg-light">
-          <img src="assets/images/homehitam.png" style="padding-bottom: 4px">
+          <img src="assets/images/homehitam.png" style="padding-bottom: 4px" class="gambar">
           Home</a>
         <a href="<?= base_url('BukuController'); ?>" class="item list-group-item-action bg-light">
           <img src="assets/images/databukuhitam.png" style="padding-bottom: 4px" class="gambar">
@@ -163,134 +163,150 @@
       </nav>
       <!-- END BEB -->
 
-      <h2 style="margin-left:18px; margin-bottom:35px;">DATA SUPPLIER</h2>
-
-      <!-- BUTTON -->
-      <div style="margin-bottom:35px; margin-left:18px;">
-        <button type="button" class="btn btn-secondary">Tambah Data</button>
-      </div>
-
-      <!-- END BUTTON -->
-
       <!-- BUAT TABEL -->
       <div class="container-fluid">
         <!-- Research -->
-
-        <div class="row">
-          <div class="col-sm-4">
-            <!-- SEARCH -->
-            <div class="form-group row">
-              <label class="col-sm-3 text-secondary h6" for="Search">Search</label>
-              <input class="form-control col-sm" name="keyword" type="text" aria-label="Search" style="margin-top:-6px; margin-left:-20px; height:35px">
-            </div>
+        <!-- <div class="row"> -->
+        <h2 style="margin-left:18px; margin-bottom:35px;">DATA SUPPLIER</h2>
+        <div style="margin-bottom:35px; margin-left:18px;">
+          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#TambahS">Tambah Data Supplier</button>
+        </div>
+        <div class="container">
+          <div class="box">
+            <table class="table table-borderless table-hover" id="table">
+              <thead style="background-color:#6C7C94; color:white">
+                <tr>
+                  <th scope="col">No.</th>
+                  <th scope="col">Kode Supplier</th>
+                  <th scope="col">Nama</th>
+                  <th scope="col">Alamat</th>
+                  <th scope="col">Kota</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Kontak</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $no = 1;
+                foreach ($supplier as $sp) { ?>
+                  <tr>
+                    <!--HINT UNTUK MENGHAPUS USER KALIAN DAPAT MENGGUNAKAN FORM, MENGGUNAKAN ANCHOR ATAU HREF PADA BUTTON-->
+                    <td class="text-center"><?php echo $no++ ?></td>
+                    <td class="text-center"><?php echo $sp['idsupplier']; ?></td>
+                    <td class="text-center"><?php echo $sp['namasupplier']; ?></td>
+                    <td class="text-center"><?php echo $sp['alamatsupplier']; ?></td>
+                    <td class="text-center"><?php echo $sp['kotasupplier']; ?></td>
+                    <td class="text-center"><?php echo $sp['emailsupplier']; ?></td>
+                    <td class="text-center"><?php echo $sp['contactsupplier']; ?></td>
+                    <td class="text-center">
+                      <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="modal" data-target="#Updatesp<?= $sp['idsupplier'] ?>" title="Edit"><i class="fa fa-edit"></i></button>
+                      <a class="btn btn-danger btn-sm rounded-0" type="button" href="<?php echo base_url() . 'SupplierController/delete/' . $sp['idsupplier'] ?>" onClick="return confirm('Apakah Anda Yakin?')"><i class="fa fa-trash"></i></a>
+                    </td>
+                  </tr>
+                <?php } ?>
+              </tbody>
+            </table>
           </div>
-          <div class="col-sm-2"></div>
-          <div class="col-sm-3">
-            <div class="form-group row">
-              <label class="col-sm-4 text-secondary h6" for="Search">Sort by</label>
-              <div class="btn-group">
-                <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top:-6px">
-                  Latest
-                </button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Latest</a>
-                  <a class="dropdown-item" href="#">Newest</a>
-                </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL EDIT DAN TAMBAH -->
+  <div class="modal fade" id="TambahS" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <center>
+            <h2>TAMBAH DATA SUPPLIER</h2>
+          </center>
+        </div>
+        <div class="modal-body">
+          <form method="POST" action="<?= base_url() ?>SupplierController/addSupplier">
+            <div class="form-group">
+              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nama Supplier" name="namasupplier" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Alamat Supplier" name="alamatsupplier" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Kota Supplier" name="kotasupplier">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Email Supplier" name="emailsupplier">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Contact Supplier" name="contactsupplier">
+            </div>
+            <div class="modal-footer">
+              <input type="submit" class="btn btn-primary" id="hapus" value="Submit" placeholder="Simpan">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDIT DATA -->
+  <?php foreach ($supplier as $sp) { ?>
+    <div class="modal fade" id="Updatesp<?= $sp['idsupplier'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <center>
+              <h2>EDIT DATA SUPPLIER</h2>
+            </center>
+          </div>
+          <div class="modal-body">
+            <form method="POST" action="<?= base_url() . 'SupplierController/update/' . $sp['idsupplier'] ?>">
+              <div class="form-group">
+                <label for="formGroupExampleInput">Nama Supplier</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nama Supplier" name="namasupplier" value="<?= $sp['namasupplier'] ?>" required>
               </div>
-            </div>
-          </div>
-          <div class="col-sm-3">
-            <div class="form-group row">
-              <label class="col-sm-3 text-secondary h6" for="Search">Show</label>
-              <div class="btn-group">
-                <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top:-6px">
-                  10
-                </button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">10</a>
-                  <a class="dropdown-item" href="#">20</a>
-                  <a class="dropdown-item" href="#">All</a>
-                </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput">Alamat Supplier</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Alamat Supplier" name="alamatsupplier" value="<?= $sp['alamatsupplier'] ?>" required>
               </div>
-            </div>
-          </div>
-          <div>
-          </div>
-          <div class="col-lg-12">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-20">
-              <div class="row" style="padding-top: 10px; padding-left:12px; padding-right:12px">
-                <table class="table table-hover">
-                  <thead class="table-light" style="background-color:#6C7C94; color:white">
-                    <tr>
-                      <th scope="col">No.</th>
-                      <th scope="col">Kode Supplier</th>
-                      <th scope="col">Nama</th>
-                      <th scope="col">Alamat</th>
-                      <th scope="col">Kota</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">Kontak</th>
-                      <th scope="col">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody style="background-color: white">
-                    <tr><?php foreach ($supplier as $sp) { ?>
-                        <th scope="row">1</th>
-                        <td class="text-center"><?= $sp['idsupplier']; ?></td>
-                        <td class="text-center"><?= $sp['namasupplier']; ?></td>
-                        <td class="text-center"><?= $sp['alamatsupplier']; ?></td>
-                        <td class="text-center"><?= $sp['kotasupplier']; ?></td>
-                        <td class="text-center"><?= $sp['emailsupplier']; ?></td>
-                        <td class="text-center"><?= $sp['contactsupplier']; ?></td>
-                        <td>
-                          <!-- Call to action buttons -->
-                          <ul class="list-inline m-0">
-                            <li class="list-inline-item">
-                              <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                            </li>
-                            <li class="list-inline-item">
-                              <a class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" href="<?php echo base_url() . 'SupplierController/delete/' . $sp['idsupplier'] ?>" data-placement="top" title="Delete" onClick="return confirm('Apakah Anda Yakin?')"><i class="fa fa-trash"></i></a>
-                            </li>
-                          </ul>
-
-                        </td>
-                    </tr><?php } ?>
-                  </tbody>
-                </table>
+              <div class="form-group">
+                <label for="formGroupExampleInput">Kota Supplier</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Kota Supplier" name="kotasupplier" value="<?= $sp['kotasupplier'] ?>" required>
               </div>
-
-
-            </div>
-            <!-- /#page-konten-wrapper -->
-
+              <div class="form-group">
+                <label for="formGroupExampleInput">Email Supplier</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="TEmail Supplier" name="emailsupplier" value="<?= $sp['emailsupplier'] ?>" required>
+              </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput">Contact Supplier</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Contact Supplier" name="contactsupplier" value="<?= $sp['contactsupplier'] ?>" required>
+              </div>
+              <div class="modal-footer">
+                <input type="submit" class="btn btn-primary" id="hapus" value="Submit" placeholder="Simpan">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+              </div>
+            </form>
           </div>
-          <!-- /#wrapper -->
-
-          <nav aria-label="Page navigation example">
-            <ul class="pagination" style="margin-left:12px">
-              <li class="page-item right"><a class="page-link" href="#">Previous</a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-          </nav>
-
-
-          <!-- Bootstrap JavaScript -->
-          <script src="assets/jquery/jquery.min.js"></script>
-          <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-          <!-- Menu Script -->
-          <script>
-            $("#menu-toggle").click(function(e) {
-              e.preventDefault();
-              $("#wrapper").toggleClass("toggled");
-            });
-          </script>
-
-
-
+        </div>
+      </div>
+    </div>
+  <?php } ?>
 </body>
+<!-- Bootstrap JavaScript -->
+<script src="assets/jquery/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+
+<!-- Menu Script -->
+<script>
+  $("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  });
+
+  $(document).ready(function() {
+    $('#table').DataTable();
+  });
+</script>
 
 </html>
