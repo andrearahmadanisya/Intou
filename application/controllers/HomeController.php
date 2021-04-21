@@ -23,7 +23,6 @@ class HomeController extends CI_Controller
 	{
 		$data['judul'] = 'Login';
 		$this->load->view('Login');
-		$this->load->view('templates/footer');
 	}
 
 	public function logout()
