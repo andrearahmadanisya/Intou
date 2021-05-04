@@ -1,45 +1,50 @@
 <?php
 
-class SupplierModel extends CI_Model
+class PelangganModel extends CI_Model
 {
-	public function getAllSupplier()
+	// mengambil data pelanggan yang ada pada db pelanggan
+	public function getAllPelanggan()
 	{
 		// get all data
-		$query = $this->db->query("SELECT * FROM supplier");
+		$query = $this->db->query("SELECT * FROM pelanggan");
 		return $query->result_array();
 	}
 
+	// mengambil data pelanggan menggunakan idpelanggan pada db pelanggan
 	public function getById($id)
 	{
-		$query = $this->db->query("SELECT * FROM supplier WHERE idsupplier = '" . $id . "'");
+		$query = $this->db->query("SELECT * FROM pelanggan WHERE idpelanggan = '" . $id . "'");
 		return $query->row_array();
 	}
 
-	public function addSupplier($data)
+	// menambahkan data pelanggan pada db pelangggan 
+	public function addPelanggan($data)
 	{
-		return $this->db->insert('supplier', $data);
+		return $this->db->insert('pelanggan', $data);
 	}
 
-	public function updateSupplier($idsupplier, $data)
+	// men-update data pelanggan menggunakan idpelanggan pada db pelanggan 
+	public function updatePelanggan($id_Pelanggan, $data)
 	{
-		$this->db->where('idsupplier', $idsupplier);
-		return $this->db->update('supplier', $data);
+		$this->db->where('idpelanggan', $id_Pelanggan);
+		return $this->db->update('pelanggan', $data);
 	}
 
-	public function deleteSupplier($idsupplier)
+	// meng hapus data pelanggan menggunakan idpelanggan pada db pelanggan
+	public function deletePelanggan($id_Pelanggan)
 	{
-		return $this->db->delete('supplier', ['idsupplier' => $idsupplier]);
+		return $this->db->delete('pelanggan', ['idpelanggan' => $id_Pelanggan]);
 	}
-	
-	public function get_keyword($keyword)
-	{
-		$this->db->select('*');
-		$this->db->from('supplier');
-		$this->db->like('Namasupplier', $keyword);
-		$this->db->or_like('alamatsupplier', $keyword);
-		$this->db->or_like('contactsupplier', $keyword);
-		$this->db->or_like('emailsupplier', $keyword);
-		$this->db->or_like('kotasupplier', $keyword);
-		return $this->db->get()->result_array();
-	}
+
+	// public function get_keyword($keyword)
+	// {
+	// 	$this->db->select('*');
+	// 	$this->db->from('pelanggan');
+	// 	$this->db->like('Namapelanggan', $keyword);
+	// 	$this->db->or_like('alamatpelanggan', $keyword);
+	// 	$this->db->or_like('contactpelanggan', $keyword);
+	// 	$this->db->or_like('emailpelanggan', $keyword);
+	// 	$this->db->or_like('kotapelanggan', $keyword);
+	// 	return $this->db->get()->result_array();
+	// }
 }
