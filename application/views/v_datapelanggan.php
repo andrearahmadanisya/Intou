@@ -30,28 +30,28 @@
             <div class="sidebar-heading"><img src="assets/images/logo.png" id="logo" /></div>
             <div class="list-group list-group-flush">
                 <a href="<?= base_url('HomeController'); ?>" class="item list-group-item-action bg-light">
-                    <img src="assets/images/homehitam.png" style="padding-bottom: 4px">
+                    <img src="<?php base_url() ?>assets/images/homehitam.png" style="padding-bottom: 4px">
                     Home</a>
                 <a href="<?= base_url('BukuController'); ?>" class="item list-group-item-action bg-light">
-                    <img src="assets/images/databukuhitam.png" style="padding-bottom: 4px" class="gambar">
+                    <img src="<?php base_url() ?>assets/images/databukuhitam.png" style="padding-bottom: 4px" class="gambar">
                     Data Buku</a>
                 <a href="<?= base_url('SupplierController'); ?>" class="item list-group-item-action bg-light">
-                    <img src="assets/images/datasupplierhitam.png" style="padding-bottom: 4px">
+                    <img src="<?php base_url() ?>assets/images/datasupplierhitam.png" style="padding-bottom: 4px">
                     Data Supplier</a>
                 <a href="<?= base_url('PelangganController'); ?>" class="item list-group-item-action bg-dark" style="color:#ffffff">
-                    <img src="assets/images/datapelangganputih.png" style="padding-bottom: 4px">
+                    <img src="<?php base_url() ?>assets/images/datapelangganputih.png" style="padding-bottom: 4px">
                     Data Pelanggan</a>
 
                 <button class="dropdown-btn">
-                    <img src="assets/images/transaksihitam.png" style="padding-bottom: 4px">Transaksi
+                    <img src="<?php base_url() ?>assets/images/transaksihitam.png" style="padding-bottom: 4px">Transaksi
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-container">
-                    <a href="#" style="color:black">Transaksi Barang Masuk</a><br><br>
-                    <a href="#" style="color:black">Transaksi Penjualan</a>
+                    <a href="<?= base_url('TBarangMasukController'); ?>" style="color:black">Transaksi Barang Masuk</a><br><br>
+                    <a href="<?= base_url('TPenjualanController'); ?>" style="color:black">Transaksi Penjualan</a>
                 </div>
                 <button class="dropdown-btn">
-                    <img src="assets/images/laporanhitam.png" style="padding-bottom: 4px;"> Laporan
+                    <img src="<?php base_url() ?>assets/images/laporanhitam.png" style="padding-bottom: 4px;"> Laporan
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-container">
@@ -177,10 +177,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $no = 1;
-                                foreach ($pelanggan as $pg) { ?>
+                                <?php $no = 1; //untuk melakukan perulangan
+                                foreach ($pelanggan as $pg) { //menggunakan db pelanggan agar data dapat masuk ke db pelanggan
+                                ?>
                                     <tr>
-                                        <!--HINT UNTUK MENGHAPUS USER KALIAN DAPAT MENGGUNAKAN FORM, MENGGUNAKAN ANCHOR ATAU HREF PADA BUTTON-->
+
                                         <td class="text-center"><?php echo $no++ ?></td>
                                         <td class="text-center"><?php echo $pg['idpelanggan']; ?></td>
                                         <td class="text-center"><?php echo $pg['namapelanggan']; ?></td>
@@ -189,7 +190,8 @@
                                         <td class="text-center"><?php echo $pg['contactpelanggan']; ?></td>
                                         <td class="text-center"><?php echo $pg['emailpelanggan']; ?></td>
                                         <td class="text-center">
-                                            <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="modal" data-target="#Updatepg<?= $pg['idpelanggan'] ?>" title="Edit"><i class="fa fa-edit"></i></button>
+                                        <!--akan memanggil modal yang memiliki id Updatepg-->
+                                            <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="modal" data-target="#Updatepg<?= $pg['idpelanggan'] ?>" title="Edit"><i class="fa fa-edit"></i></button> 
                                             <a class="btn btn-danger btn-sm rounded-0" type="button" href="<?php echo base_url() . 'PelangganController/delete/' . $pg['idpelanggan'] ?>" onClick="return confirm('Apakah Anda Yakin?')"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
@@ -213,6 +215,7 @@
                 </div>
                 <div class="modal-body">
                     <form method="POST" action="<?= base_url() ?>PelangganController/addPelanggan">
+                        <!--memanggil fungsi yang ada pada controller pelanggan yaitu addpelanggan -->
                         <div class="form-group">
                             <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nama pelanggan" name="namapelanggan" required>
                         </div>
@@ -229,6 +232,7 @@
                             <input type="text" class="form-control" placeholder="Contact pelanggan" name="contactpelanggan">
                         </div>
                         <div class="modal-footer">
+                            <!-- untuk menyimpan data yang sudah di tambahkan kedalam database pelanggan -->
                             <input type="submit" class="btn btn-primary" id="hapus" value="Submit" placeholder="Simpan">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                         </div>
@@ -239,6 +243,7 @@
     </div>
     <!-- EDIT -->
     <?php foreach ($pelanggan as $pg) { ?>
+        <!-- menggunakan modal dan akan memanggil db pelanggan menggunakan idpelanggan -->
         <div class="modal fade" id="Updatepg<?= $pg['idpelanggan'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
