@@ -30,37 +30,37 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading"><img src="assets/images/logo.png" id="logo" /></div>
+      <div class="sidebar-heading"><img src="<?php base_url() ?>assets/images/logo.png" id="logo" /></div>
       <div class="list-group list-group-flush">
         <a href="<?= base_url('HomeController'); ?>" class="item list-group-item-action bg-light">
-          <img src="assets/images/homehitam.png" style="padding-bottom: 4px">
+          <img src="<?php base_url() ?>assets/images/homehitam.png" style="padding-bottom: 4px">
           Home</a>
         <a href="<?= base_url('BukuController'); ?>" class="item list-group-item-action bg-dark" style="color:#ffffff">
-          <img src="assets/images/databukuputih.png" style="padding-bottom: 4px" class="gambar">
+          <img src="<?php base_url() ?>assets/images/databukuputih.png" style="padding-bottom: 4px" class="gambar">
           Data Buku</a>
         <a href="<?= base_url('SupplierController'); ?>" class="item list-group-item-action bg-light">
-          <img src="assets/images/datasupplierhitam.png" style="padding-bottom: 4px">
+          <img src="<?php base_url() ?>assets/images/datasupplierhitam.png" style="padding-bottom: 4px">
           Data Supplier</a>
         <a href="<?= base_url('PelangganController'); ?>" class="item list-group-item-action bg-light">
-          <img src="assets/images/datapelangganhitam.png" style="padding-bottom: 4px">
+          <img src="<?php base_url() ?>assets/images/datapelangganhitam.png" style="padding-bottom: 4px">
           Data Pelanggan</a>
 
         <button class="dropdown-btn">
-          <img src="assets/images/transaksihitam.png" style="padding-bottom: 4px">Transaksi
+          <img src="<?php base_url() ?>assets/images/transaksihitam.png" style="padding-bottom: 4px">Transaksi
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-          <a href="#" style="color:black">Transaksi Barang Masuk</a><br><br>
-          <a href="#" style="color:black">Transaksi Penjualan</a>
+          <a href="<?= base_url('TBarangMasukController'); ?>" style="color:black">Transaksi Barang Masuk</a><br><br>
+          <a href="<?= base_url('TPenjualanController'); ?>" style="color:black">Transaksi Penjualan</a>
         </div>
 
         <button class="dropdown-btn">
-          <img src="assets/images/laporanhitam.png" style="padding-bottom: 4px;"> Laporan
+          <img src="<?php base_url() ?>assets/images/laporanhitam.png" style="padding-bottom: 4px;"> Laporan
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-          <a href="#" style="color:black">Laporan Pembelian</a><br><br>
-          <a href="#" style="color:black">Laporan Penjualan</a>
+          <a href="" style="color:black">Laporan Pembelian</a><br><br>
+          <a href="" style="color:black">Laporan Penjualan</a>
         </div>
       </div>
     </div>
@@ -88,7 +88,7 @@
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
         <button class="btn" id="menu-toggle">
-          <img src="assets/images/menu.png">
+          <img src="<?php base_url() ?>assets/images/menu.png">
         </button>
         <div>
           <script type="text/javascript">
@@ -144,7 +144,7 @@
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="assets/images/karyawan.png">
+                <img src="<?php base_url() ?>assets/images/karyawan.png">
                 Karyawan
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -158,7 +158,7 @@
       <!-- BREADCRUM -->
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb" style="background-color:#F2F5FA">
-          <li class="breadcrumb-item active" aria-current="page"><a href="#">Data Buku</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><a href="<?= base_url('BukuController'); ?>">Data Buku</a></li>
           <li class="breadcrumb-item">Tambah Data</li>
           <li class="breadcrumb-item">History</li>
         </ol>
@@ -176,7 +176,7 @@
         </div>
 
         <!-- BUAT TABEL -->
-        <div class="container">
+        <div class="container-fluid">
           <div class="box">
             <table class="table table-borderless table-hover" id="table">
               <thead style="background-color:#6C7C94; color:white">
@@ -195,10 +195,8 @@
               </thead>
               <tbody>
                 <?php $no = 1;
-                foreach ($buku as $bk) {
-                  date_default_timezone_set('Asia/Jakarta');
-                  $datestring = 'Year: %Y Month: %m Day: %d - %h:%i %a';
-                  $time = time(); ?>
+                date_default_timezone_set('Asia/Jakarta');
+                foreach ($buku as $bk) { ?>
                   <tr>
                     <!--HINT UNTUK MENGHAPUS USER KALIAN DAPAT MENGGUNAKAN FORM, MENGGUNAKAN ANCHOR ATAU HREF PADA BUTTON-->
                     <td class="text-center"><?php echo $no++ ?></td>
@@ -206,8 +204,7 @@
                     <td class="text-center"><?php echo $bk['judul'] ?></td>
                     <td class="text-center"><?php echo $bk['category'] ?></td>
                     <td class="text-center"><?php echo $bk['penulis'] ?></td>
-                    <td class="text-center"><?php echo date(DATE_RSS, $time); ?></td>
-                    <!-- <td class="text-center"><?php echo $bk['tglmasuk'] ?></td> -->
+                    <td class="text-center"><?php echo date("l, d-m-Y H:i a", strtotime($bk['tglmasuk'])) ?></td>
                     <td class="text-center"><?php echo $bk['hargajual'] ?></td>
                     <td class="text-center"><?php echo $bk['hargabeli'] ?></td>
                     <td class="text-center"><?php echo $bk['total'] ?></td>
@@ -225,7 +222,7 @@
     </div>
   </div>
 
-  <!-- TAMBAH DATA bUKU -->
+  <!-- Edit dan tambah -->
   <div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -237,16 +234,16 @@
         <div class="modal-body">
           <form method="POST" action="<?= base_url() ?>BukuController/addBuku">
             <div class="form-group">
-              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Judul" name="judul" required>
+              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="judul" name="judul" required>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Category" name="category" required>
+              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Alamat Buku" name="category" required>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Penulis" name="penulis">
+              <input type="text" class="form-control" placeholder="penulis" name="penulis">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="tglmasuk" name="tglmasuk" value="<?php echo date(DATE_RSS, $time); ?>">
+              <input type="datetime" class="form-control" placeholder="Tanggal" name="tglmasuk" value="<?php echo date("l, d-m-Y H:i a") ?>">
             </div>
             <div class="form-group">
               <input type="text" class="form-control" placeholder="hargajual" name="hargajual">
@@ -255,7 +252,7 @@
               <input type="text" class="form-control" placeholder="hargabeli" name="hargabeli">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Total" name="total">
+              <input type="text" class="form-control" placeholder="total" name="total">
             </div>
             <div class="modal-footer">
               <input type="submit" class="btn btn-primary" id="hapus" value="Submit" placeholder="Simpan">
@@ -267,8 +264,7 @@
     </div>
   </div>
 
-  <!-- Edit data buku -->
-
+  <!-- EDIT -->
   <?php foreach ($buku as $bk) { ?>
     <div class="modal fade" id="Updatebk<?= $bk['idbuku'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -281,32 +277,25 @@
           <div class="modal-body">
             <form method="POST" action="<?= base_url() . 'BukuController/update/' . $bk['idbuku'] ?>">
               <div class="form-group">
-                <label for="formGroupExampleInput">Judul Buku</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Judul Buku" name="nama" value="<?= $bk['judul'] ?>" required>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="judul" name="judul" value="<?= $bk['judul'] ?>" required>
               </div>
               <div class="form-group">
-                <label for="formGroupExampleInput">Category</label>
                 <input type="text" class="form-control" id="formGroupExampleInput" placeholder="category" name="category" value="<?= $bk['category'] ?>" required>
               </div>
               <div class="form-group">
-                <label for="formGroupExampleInput">Penulis</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Penulis" name="penulis" value="<?= $bk['penulis'] ?>" required>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="penulis" name="penulis" value="<?= $bk['penulis'] ?>" required>
               </div>
               <div class="form-group">
-                <label for="formGroupExampleInput">Tanggal Masuk</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Tanggal Masuk" name="tglmasuk" value="<?= $bk['tglmasuk'] ?>" required>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="tglmasuk" name="tglmasuk" value="<?php echo date("l, d-m-Y H:i a") ?>" required>
               </div>
               <div class="form-group">
-                <label for="formGroupExampleInput">Harga Jual</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Harga Jual" name="hargajual" value="<?= $bk['hargajual'] ?>" required>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="hargajual" name="hargajual" value="<?= $bk['hargajual'] ?>" required>
               </div>
               <div class="form-group">
-                <label for="formGroupExampleInput">Harga Beli</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Harga Beli" name="hargabeli" value="<?= $bk['hargabeli'] ?>" required>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="hargabeli" name="hargabeli" value="<?= $bk['hargabeli'] ?>" required>
               </div>
               <div class="form-group">
-                <label for="formGroupExampleInput">Total</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Total" name="total" value="<?= $bk['total'] ?>" required>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="total" name="total" value="<?= $bk['total'] ?>" required>
               </div>
               <div class="modal-footer">
                 <input type="submit" class="btn btn-primary" id="hapus" value="Submit" placeholder="Simpan">
@@ -319,13 +308,13 @@
     </div>
   <?php } ?>
 
+
 </body>
 
 <!-- Bootstrap JavaScript -->
 <script src="assets/jquery/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-
 
 <!-- Menu Script -->
 <script>
