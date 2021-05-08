@@ -50,8 +50,8 @@
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-container">
-                    <a href="#" style="color:black">Transaksi Barang Masuk</a><br><br>
-                    <a href="#" style="color:black">Transaksi Penjualan</a>
+                    <a href="<?= base_url('TBarangMasukController'); ?>" style="color:black">Transaksi Barang Masuk</a><br><br>
+                    <a href="<?= base_url('TPenjualanController'); ?>" style="color:black">Transaksi Penjualan</a>
                 </div>
 
                 <button class="dropdown-btn">
@@ -158,7 +158,7 @@
             <!-- BREADCRUM -->
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb" style="background-color:#F2F5FA">
-                    <li class="breadcrumb-item active" aria-current="page"><a href="#">Data Buku</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="<?= base_url('BukuController'); ?>">Data Buku</a></li>
                     <li class="breadcrumb-item">Tambah Data</li>
                     <li class="breadcrumb-item">History</li>
                 </ol>
@@ -171,12 +171,11 @@
                 <h2 style="margin-left:18px; margin-bottom:35px;">HISTORY DATA BUKU</h2>
                 <!-- BUTTON -->
                 <div style="margin-bottom:35px; margin-left:18px;">
-                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#tambah">Tambah Data</button>
                     <button type="button" class="btn btn-secondary">History</button>
                 </div>
 
                 <!-- BUAT TABEL -->
-                <div class="container">
+                <div class="container-fluid">
                     <div class="box">
                         <table class="table table-borderless table-hover" id="table">
                             <thead style="background-color:#6C7C94; color:white">
