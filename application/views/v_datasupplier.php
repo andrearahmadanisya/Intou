@@ -32,29 +32,29 @@
       <div class="sidebar-heading"><img src="assets/images/logo.png" id="logo" /></div>
       <div class="list-group list-group-flush">
         <a href="<?= base_url('HomeController'); ?>" class="item list-group-item-action bg-light">
-          <img src="assets/images/homehitam.png" style="padding-bottom: 4px" class="gambar">
+          <img src="<?php base_url() ?>assets/images/homehitam.png" style="padding-bottom: 4px" class="gambar">
           Home</a>
         <a href="<?= base_url('BukuController'); ?>" class="item list-group-item-action bg-light">
-          <img src="assets/images/databukuhitam.png" style="padding-bottom: 4px" class="gambar">
+          <img src="<?php base_url() ?>assets/images/databukuhitam.png" style="padding-bottom: 4px" class="gambar">
           Data Buku</a>
         <a href="<?= base_url('SupplierController'); ?>" class="item list-group-item-action bg-dark" style="color:#ffffff">
-          <img src="assets/images/datasupplierputih.png" style="padding-bottom: 4px">
+          <img src="<?php base_url() ?>assets/images/datasupplierputih.png" style="padding-bottom: 4px">
           Data Supplier</a>
         <a href="<?= base_url('PelangganController'); ?>" class="item list-group-item-action bg-light">
-          <img src="assets/images/datapelangganhitam.png" style="padding-bottom: 4px">
+          <img src="<?php base_url() ?>assets/images/datapelangganhitam.png" style="padding-bottom: 4px">
           Data Pelanggan</a>
 
         <button class="dropdown-btn">
-          <img src="assets/images/transaksihitam.png" style="padding-bottom: 4px">Transaksi
+          <img src="<?php base_url() ?>assets/images/transaksihitam.png" style="padding-bottom: 4px">Transaksi
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-          <a href="#" style="color:black">Transaksi Barang Masuk</a><br><br>
-          <a href="#" style="color:black">Transaksi Penjualan</a>
+          <a href="<?= base_url('TBarangMasukController'); ?>" style="color:black">Transaksi Barang Masuk</a><br><br>
+          <a href="<?= base_url('TPenjualanController'); ?>" style="color:black">Transaksi Penjualan</a>
         </div>
 
         <button class="dropdown-btn">
-          <img src="assets/images/laporanhitam.png" style="padding-bottom: 4px;"> Laporan
+          <img src="<?php base_url() ?>assets/images/laporanhitam.png" style="padding-bottom: 4px;"> Laporan
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
@@ -87,7 +87,7 @@
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
         <button class="btn" id="menu-toggle">
-          <img src="assets/images/menu.png">
+          <img src="<?php base_url() ?>assets/images/menu.png">
         </button>
         <div>
           <script type="text/javascript">
@@ -143,7 +143,7 @@
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="assets/images/karyawan.png">
+                <img src="<?php base_url() ?>assets/images/karyawan.png">
                 Karyawan
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -171,7 +171,7 @@
         <div style="margin-bottom:35px; margin-left:18px;">
           <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#TambahS">Tambah Data Supplier</button>
         </div>
-        <div class="container">
+        <div class="container-fluid">
           <div class="box">
             <table class="table table-borderless table-hover" id="table">
               <thead style="background-color:#6C7C94; color:white">
@@ -292,8 +292,8 @@
   <?php } ?>
 </body>
 <!-- Bootstrap JavaScript -->
-<script src="assets/jquery/jquery.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php base_url() ?>assets/jquery/jquery.min.js"></script>
+<script src="<?php base_url() ?>assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
 
