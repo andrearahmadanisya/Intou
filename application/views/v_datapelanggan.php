@@ -161,7 +161,7 @@
                 <!-- END BUTTON -->
 
                 <!-- BUAT TABEL -->
-                <div class="container">
+                <div class="container-fluid">
                     <div class="box">
                         <table class="table table-borderless table-hover" id="table">
                             <thead style="background-color:#6C7C94; color:white">
@@ -190,8 +190,8 @@
                                         <td class="text-center"><?php echo $pg['contactpelanggan']; ?></td>
                                         <td class="text-center"><?php echo $pg['emailpelanggan']; ?></td>
                                         <td class="text-center">
-                                        <!--akan memanggil modal yang memiliki id Updatepg-->
-                                            <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="modal" data-target="#Updatepg<?= $pg['idpelanggan'] ?>" title="Edit"><i class="fa fa-edit"></i></button> 
+                                            <!--akan memanggil modal yang memiliki id Updatepg-->
+                                            <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="modal" data-target="#Updatepg<?= $pg['idpelanggan'] ?>" title="Edit"><i class="fa fa-edit"></i></button>
                                             <a class="btn btn-danger btn-sm rounded-0" type="button" href="<?php echo base_url() . 'PelangganController/delete/' . $pg['idpelanggan'] ?>" onClick="return confirm('Apakah Anda Yakin?')"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
