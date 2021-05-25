@@ -1,127 +1,105 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class BukuController extends CI_Controller
 {
-	public function __construct()
-	{
-		parent::__construct();
-		// load BukuModel sebagai parent
-		$this->load->model('BukuModel');
-		$this->load->model('HistoryModel');
-		$this->load->library('form_validation');
-		$this->load->helper('date');
-	}
+    public function __construct()
+    {
+        parent::__construct();
+        cek_login();
 
-	public function index()
-	{
-		// untu judul 
-		$data['judul'] = 'Data Buku';
-		// session yang menampung login user
-		$data['user'] = $this->session->userdata('user');
-		// mengambil data buku yang ada pada db dan menampilkannya pada view v_databuku
-		$data['buku'] = $this->BukuModel->getAllBuku();
-		$this->load->view('v_databuku', $data);
-	}
+        $this->load->model('Auth_model', 'admin');
+        $this->load->library('form_validation');
+    }
 
-	// FUngsi ini untuk menambahkan data buku pada Database
-	public function addBuku()
-	{
-		// membuat form validation untuk input sesuai dengan kolom yang ada pada db
-		$this->form_validation->set_rules('judul', 'judul', 'required');
-		$this->form_validation->set_rules('category', 'category', 'required');
-		$this->form_validation->set_rules('penulis', 'penulis', 'required');
-		$this->form_validation->set_rules('total', 'total', 'required');
-		$this->form_validation->set_rules('tglmasuk', 'tglmasuk', 'required');
-		$this->form_validation->set_rules('hargajual', 'hargajual', 'required');
-		$this->form_validation->set_rules('hargabeli', 'hargabeli', 'required');
+    public function index()
+    {
+        $data['title'] = "Buku";
+        $data['buku'] = $this->admin->getbuku();
+        $this->template->load('templates/dashboard', 'buku/data', $data);
+    }
 
-		// dicek terlebih dahulu kalau false akan kembali ke view v_data buku, else akan menampilkan form yag akan diinputkan
-		if ($this->form_validation->run() == FALSE) {
-			$data['buku'] = $this->BukuModel->getAllBuku();
+    private function _validasi()
+    {
+        $this->form_validation->set_rules('judul', 'Judul', 'required');
+        $this->form_validation->set_rules('idcategory', 'idcategory', 'required');
+    }
 
-			$this->load->view('v_databuku');
-		} else {
-			date_default_timezone_set('Asia/Jakarta');
-			$format = "Y-m-d H:i a";
+    public function add()
+    {
+        $this->_validasi();
 
-			$add = [
-				"idbuku" => '',
-				"judul" => $this->input->post('judul', true),
-				"category" => $this->input->post('category', true),
-				"penulis" => $this->input->post('penulis', true),
-				"total" => $this->input->post('total', true),
-				"tglmasuk" => date($format),
-				"hargajual" => $this->input->post('hargajual', true),
-				"hargabeli" => $this->input->post('hargabeli', true)
-			];
-			$this->BukuModel->addBuku($add);
-		}
-		redirect('BukuController');
-	}
+        if ($this->form_validation->run() == false) {
+            $data['title'] = "Buku";
+            // $data['buku'] = $this->admin->getbuku();
+            $data['category'] = $this->admin->get('category');
+            // $data['satuan'] = $this->admin->get('satuan');
 
-	// fungsi ini untuk menhapus data buku yang ada pada database dan dipindahkan ke database hiistory buku
-	public function delete($id)
-	{
-		// mengambil id buku yang akan di hapus
-		$buku = $this->BukuModel->getById($id);
-		// memindahkannya ke database history
-		$this->HistoryModel->addHistory($buku);
-		// menghapus dari db buku
-		$this->BukuModel->deleteBuku($id);
+            // Mengenerate ID buku
+            $kode_terakhir = $this->admin->getMax('buku', 'idbuku');
+            $kode_tambah = substr($kode_terakhir, -6, 6);
+            $kode_tambah++;
+            $number = str_pad($kode_tambah, 6, '0', STR_PAD_LEFT);
+            $data['idbuku'] = 'B' . $number;
 
-		redirect('BukuController');
-	}
+            $this->template->load('templates/dashboard', 'buku/add', $data);
+        } else {
+            $input = $this->input->post(null, true);
+            $insert = $this->admin->insert('buku', $input);
 
-	// fungsi ini untuk mengedit/update data buku 
-	public function update($id)
-	{
-		$data['judul'] = 'Buku';
-		$data['buku'] = $this->BukuModel->getAllBuku();
-		//from library form_validation
-		$this->form_validation->set_rules('judul', 'judul', 'required');
-		$this->form_validation->set_rules('category', 'category', 'required');
-		$this->form_validation->set_rules('penulis', 'penulis', 'required');
-		$this->form_validation->set_rules('total', 'total', 'required');
-		$this->form_validation->set_rules('tglmasuk', 'tglmasuk', 'required');
-		$this->form_validation->set_rules('hargajual', 'hargajual', 'required');
-		$this->form_validation->set_rules('hargabeli', 'hargabeli', 'required');
+            if ($insert) {
+                set_pesan('data berhasil disimpan');
+                redirect('BukuController');
+            } else {
+                set_pesan('gagal menyimpan data');
+                redirect('BukuController/add');
+            }
+        }
+    }
 
-		if ($this->form_validation->run() == false) {
+    public function edit($getId)
+    {
+        $id = encode_php_tags($getId);
+        $this->_validasi();
 
-			$this->load->view('v_databuku', $data);
-		} else {
-			$update = [
-				"idbuku" => $id,
-				"judul" => $this->input->post('judul', true),
-				"category" => $this->input->post('category', true),
-				"penulis" => $this->input->post('penulis', true),
-				"total" => $this->input->post('total', true),
-				"tglmasuk" => $this->input->post('tglmasuk', true),
-				"hargajual" => $this->input->post('hargajual', true),
-				"hargabeli" => $this->input->post('hargabeli', true)
-			];
-			$this->BukuModel->updateBuku($id, $update);
-			redirect('BukuController');
-		}
-	}
+        if ($this->form_validation->run() == false) {
+            $data['title'] = "buku";
+            $data['category'] = $this->admin->get('category');
+            $data['buku'] = $this->admin->get('buku', ['idbuku' => $id]);
+            $this->template->load('templates/dashboard', 'buku/edit', $data);
+        } else {
+            $input = $this->input->post(null, true);
+            $update = $this->admin->update('buku', 'idbuku', $id, $input);
 
-	// public function SearchBuku()
-	// {
-	// 	$keyword = $this->input->post('keyword');
-	// 	$data['buku'] = $this->BukuModel->get_keyword($keyword);
-	// 	$this->load->view('v_databuku', $data);
-	// }
+            if ($update) {
+                set_pesan('data berhasil disimpan');
+                redirect('BukuController');
+            } else {
+                set_pesan('gagal menyimpan data');
+                redirect('buku/edit/' . $id);
+            }
+        }
+    }
 
-	// public function cari()
-	// {
-	// 	$data['judul'] = 'Data Buku';
-	// 	$data['buku'] = $this->BukuModel->getAllBuku();
+    public function delete($getId)
+    {
+        $id = encode_php_tags($getId);
+        $buku = $this->admin->getById($id);
+        $this->admin->addHistory($buku);
+        // memindahkannya ke database history
+        if ($this->admin->delete('buku', 'idbuku', $id)) {
+            // $this->admin->delete('buku', 'idbuku', $id);
+            set_pesan('data berhasil dipindahkan kedalam HistoryBuku.');
+        } else {
+            set_pesan('data gagal dipindahkan.', false);
+        }
+        redirect('BukuController');
+    }
 
-	// 	if ($this->input->post('submit')) {
-	// 		$data['keyword'] = $this->input->post('keyword');
-	// 	} else {
-	// 		$data['keyword'] = null;
-	// 	}
-	// 	redirect('BukuController');
-	// }
+    public function getstok($getId)
+    {
+        $id = encode_php_tags($getId);
+        $query = $this->admin->cekStok($id);
+        output_json($query);
+    }
 }
