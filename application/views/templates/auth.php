@@ -12,7 +12,7 @@
     <title><?= $title; ?></title>
 
     <!-- Custom fonts for this template-->
-    <!-- <link href="<?= base_url(); ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
+    <link href="<?= base_url(); ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
@@ -24,6 +24,19 @@
             background-repeat: no-repeat;
             background-size: 80%;
         }
+
+        body:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url(assets/img/lib2.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            -webkit-filter: blur(10px);
+            -moz-filter: blur(10px);
+            filter: blur(10px);
+        }
     </style>
 </head>
 
@@ -31,25 +44,8 @@
 <body>
 
     <div class="container">
-        <!-- <div class="contact-form">
-            <img alt="" class="avatar" src="<?= base_url() ?>assets/img/logo.png">
-            <?= $this->session->flashdata('pesan'); ?>
-            <?= form_open('', ['class' => 'account']); ?>
-            <div class="form-group">
-                <input autofocus="autofocus" autocomplete="off" value="<?= set_value('username'); ?>" type="text" name="username" class="form-control form-control-user" placeholder="Username">
-                <?= form_error('username', '<small class="text-danger">', '</small>'); ?>
-            </div>
-            <div class="form-group">
-                <input type="password" name="password" class="form-control form-control-user" placeholder="Password">
-                <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
-            </div>
-            <button type="submit" class="btn btn-primary btn-user btn-block">
-                Login
-            </button>
-            <?= form_close(); ?>
-        </div> -->
-        <?= $contents; ?>
 
+        <?= $contents; ?>
 
     </div>
 
