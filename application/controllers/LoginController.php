@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Auth extends CI_Controller
+class LoginController extends CI_Controller
 {
     public function __construct()
     {
@@ -34,22 +34,16 @@ class Auth extends CI_Controller
             if ($cek_username) {
                 $password = $this->auth->get_password($input['username']);
                 if ($cek_username['password'] == $password) {
-                    // $this->session->set_userdata('user', $cek_username);
 
                     $user_db = $this->auth->userdata($input['username']);
-                    // $userdata = [
-                    //     'user'  => $user_db['iduser'],
-                    //     // 'role'  => $user_db['role'],
-                    //     'timestamp' => time()
-                    // ];
                     $this->session->set_userdata('login_session', $user_db);
                     redirect('dashboard');
                 }
                 set_pesan('password salah', false);
-                redirect('auth');
+                redirect('LoginController');
             } else {
-                set_pesan('username belum terdaftar', false);
-                redirect('auth');
+                set_pesan('Coba inputkan Username dan Pass dengan tepat', false);
+                redirect('LoginController');
             }
         }
     }
@@ -59,6 +53,6 @@ class Auth extends CI_Controller
         $this->session->unset_userdata('login_session');
 
         set_pesan('anda telah berhasil logout');
-        redirect('auth');
+        redirect('LoginController');
     }
 }
