@@ -52,7 +52,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('dashboard'); ?>">
+                <a class="nav-link active" href="<?= base_url('dashboard'); ?>">
                     <i class="fas fa-fw fa-tachometer-alt "></i>
                     <span>Dashboard</span>
                 </a>
@@ -155,11 +155,8 @@
                 <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow-sm" style="background-color:#C0CADB; color:white">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <i class="fas fa-fw fa-calendar"></i>
-
-                    <!-- <img class="rounded-circle" src="<?= base_url() ?>assets/img/cal.png"> -->
-                    <!-- <img class=" rounded-circle text-left" src="<?= base_url() ?>assets/img/cal.png"> -->
                     <li class="navbar col-md-0">
+                        <img style="height: 28px; padding-right: 6px;" src="<?= base_url() ?>assets/img/cal.png">
                         <div id="MyClockDisplay" class="jam text-dark font-weight-bold" onload="showTime()">
                             <script type="text/javascript">
                                 function showTime() {
@@ -215,15 +212,6 @@
                                 </a>
                             </div>
                         </li>
-                        <!-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="assets/images/karyawan.png">
-                                Karyawan
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Logout</a>
-                            </div>
-                        </li> -->
                     </ul>
                 </nav>
 
@@ -243,13 +231,13 @@
             </div>
             <!-- End of Main Content -->
             <!-- Footer -->
-            <!-- <footer class="sticky-footer bg-light">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Website Inventory Toko Buku</span>
+            <footer class="sticky-footer bg-light">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span style="font-size: large; font-weight: bold; color: #6C7C94;">Website Inventory Toko Buku</span>
+                    </div>
                 </div>
-            </div>
-        </footer> -->
+            </footer>
             <!-- End of Footer -->
 
         </div>

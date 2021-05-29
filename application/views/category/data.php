@@ -3,12 +3,12 @@
     <div class="card-header bg-white py-3">
         <div class="row">
             <div class="col">
-                <h4 class="h5 align-middle m-0 font-weight-bold text-primary">
+                <h4 class="h5 align-middle m-0 font-weight-bold " style="color: #315c9a;">
                     Data Kategori Buku
                 </h4>
             </div>
-            <div class="col-auto">
-                <a type="button" data-toggle="modal" data-target="#Tambahcat" class="btn btn-sm btn-primary btn-icon-split text-light">
+            <div class=" col-auto">
+                <a type="button" data-toggle="modal" data-target="#Tambahcat" class="btn btn-sm  btn-icon-split text-light" style="background-color: #315c9a; color: white;">
                     <span class="icon">
                         <i class="fa fa-plus"></i>
                     </span>
