@@ -71,7 +71,7 @@ section {
 body {
   margin: 0;
   font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   color: #858796;
@@ -155,13 +155,13 @@ strong {
 }
 
 small {
-  font-size: 90%;
+  font-size: 80%;
 }
 
 sub,
 sup {
   position: relative;
-  font-size: 80%;
+  font-size: 75%;
   line-height: 0;
   vertical-align: baseline;
 }
@@ -205,7 +205,7 @@ code,
 kbd,
 samp {
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 2em;
+  font-size: 1em;
 }
 
 pre {
@@ -265,7 +265,7 @@ optgroup,
 textarea {
   margin: 0;
   font-family: inherit;
-  font-size: large;
+  font-size: inherit;
   line-height: inherit;
 }
 
@@ -544,11 +544,6 @@ mark,
   color: #858796;
 }
 
-/* .login{
-  background: ;
-  background-size: cover;
-  background-attachment: fixed;
-} */
 code {
   font-size: 87.5%;
   color: #e83e8c;
@@ -612,7 +607,7 @@ pre code {
 
 @media (min-width: 992px) {
   .container {
-    max-width: 550px;
+    max-width: 960px;
   }
 }
 
@@ -624,6 +619,8 @@ pre code {
 
 .container-fluid {
   width: 100%;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
   margin-right: auto;
   margin-left: auto;
 }
@@ -631,8 +628,11 @@ pre code {
 .row {
   display: -webkit-box;
   display: -ms-flexbox;
-  /* margin-right: -0.75rem;
-  margin-left: -0.75rem; */
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -0.75rem;
+  margin-left: -0.75rem;
 }
 
 .no-gutters {
@@ -679,6 +679,7 @@ pre code {
 .col-md-3,
 .col-md-4,
 .col-md-5,
+.col-md-6,
 .col-md-7,
 .col-md-8,
 .col-md-9,
@@ -1251,6 +1252,9 @@ pre code {
   }
 
   .col-md-6 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
     max-width: 50%;
   }
 
@@ -2423,9 +2427,10 @@ textarea.form-control {
 
 .form-row {
   display: -webkit-box;
-  /* display: -ms-flexbox; */
-  /* -ms-flex-wrap: wrap;
-  flex-wrap: wrap; */
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
   margin-right: -5px;
   margin-left: -5px;
 }
@@ -2801,7 +2806,7 @@ textarea.form-control.is-invalid {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    /* -webkit-box-flex: 0;
+    -webkit-box-flex: 0;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     -webkit-box-orient: horizontal;
@@ -2811,7 +2816,7 @@ textarea.form-control.is-invalid {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    margin-bottom: 0; */
+    margin-bottom: 0;
   }
 
   .form-inline .form-control {
@@ -4863,10 +4868,10 @@ input[type="button"].btn-block {
   flex-direction: column;
   padding-left: 0;
   margin-bottom: 0;
+  list-style: none;
 }
 
 .navbar-nav .nav-link {
-  /* font-size: large; */
   padding-right: 0;
   padding-left: 0;
 }
@@ -5325,6 +5330,7 @@ input[type="button"].btn-block {
   -webkit-box-flex: 1;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
+  padding: 1.25rem;
 }
 
 .card-title {
@@ -11693,11 +11699,11 @@ a:focus {
   flex: 1 0 auto;
 }
 
-/* .container,
+.container,
 .container-fluid {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-} */
+}
 
 .scroll-to-top {
   position: fixed;
@@ -12074,8 +12080,8 @@ a:focus {
 
 .sidebar .nav-item .nav-link .img-profile,
 .topbar .nav-item .nav-link .img-profile {
-  height: 3rem;
-  width: 3rem;
+  height: 2rem;
+  width: 2rem;
 }
 
 .topbar {
@@ -12244,7 +12250,7 @@ a:focus {
 }
 
 .sidebar .nav-item .nav-link span {
-  font-size: 1.65rem;
+  font-size: 0.65rem;
   display: block;
 }
 
@@ -12422,12 +12428,12 @@ a:focus {
   }
 
   .sidebar .nav-item .nav-link i {
-    font-size: 1.85rem;
+    font-size: 0.85rem;
     margin-right: 0.25rem;
   }
 
   .sidebar .nav-item .nav-link span {
-    font-size: 1.85rem;
+    font-size: 0.85rem;
     display: inline;
   }
 
@@ -12504,7 +12510,7 @@ a:focus {
   }
 
   .sidebar.toggled .nav-item .nav-link span {
-    font-size: 1.65rem;
+    font-size: 0.65rem;
     display: block;
   }
 
@@ -12665,7 +12671,7 @@ a:focus {
 .btn-group-sm>.btn-circle.btn {
   height: 1.8rem;
   width: 1.8rem;
-  font-size: 1.75rem;
+  font-size: 0.75rem;
 }
 
 .btn-circle.btn-lg,
@@ -12790,6 +12796,11 @@ a:focus {
   }
 }
 
+.bg-login-image {
+  background: url("https://source.unsplash.com/K4mSJ7kc0As/600x800");
+  background-position: center;
+  background-size: cover;
+}
 
 .bg-register-image {
   background: url("https://source.unsplash.com/Mv9hjnEUHR4/600x800");
