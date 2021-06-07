@@ -98,7 +98,14 @@
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="hargapcs">Harga /pcs</label>
                     <div class="col-md-5">
-                        <input value="<?= set_value('hargapcs'); ?>" name="hargapcs" id="hargapcs" type="text" class="form-control" placeholder="Harga Beli/pcs...">
+                        <div class="input-group">
+                            <select name="hargapcs" id="hargapcs" class="custom-select">
+                                <option value="" selected disabled>Harga Buku/pcs</option>
+                                <?php foreach ($buku as $b) : ?>
+                                    <option <?= $this->uri->segment(3) == $b['hargabeli'] ? 'selected' : '';  ?> <?= set_select('hargapcs', $b['hargabeli']) ?> value="<?= $b['hargabeli'] ?>"><?= $b['idbuku'] . ' | ' . $b['hargabeli'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                         <?= form_error('hargapcs', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
