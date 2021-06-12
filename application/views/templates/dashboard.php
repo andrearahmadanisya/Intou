@@ -39,10 +39,10 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav sidebar sidebar-light accordion shadow-sm " id="accordionSidebar" style="background-color:#FBFBFB; color:white">
+        <ul class="navbar-nav bg-white sidebar sidebar-light accordion shadow-sm" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center" style="background-color:#C0CADB; color:white" href="<?= base_url('dashboard'); ?>">
+            <a class="sidebar-brand d-flex align-items-center bg-white" href="<?= base_url('dashboard'); ?>">
                 <div class="sidebar-brand-icon">
                     <!-- <i class="fas fa-book"></i> -->
                     <img class="img-fluid" src="<?= base_url() ?>assets/img/logo.png" id="logo"></img>
@@ -52,7 +52,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link active" href="<?= base_url('dashboard'); ?>">
+                <a class="nav-link" href="<?= base_url('dashboard'); ?>">
                     <i class="fas fa-fw fa-tachometer-alt "></i>
                     <span>Dashboard</span>
                 </a>
@@ -62,8 +62,8 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading font-weight-bold">
-                Data Master
+            <div class="sidebar-heading">
+                Data
             </div>
 
 
@@ -89,7 +89,7 @@
                 <div id="collapseMaster" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-light py-2 collapse-inner rounded">
                         <a class="collapse-item" href="<?= base_url('BukuController'); ?>">Data Buku</a>
-                        <a class="collapse-item" href="<?= base_url('CategoryController'); ?>">Category Buku</a>
+                        <a class="collapse-item" href="<?= base_url('CategoryController'); ?>">Kategori Buku</a>
                     </div>
                 </div>
             </li>
@@ -124,7 +124,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Report
+                Laporan
             </div>
 
             <li class="nav-item">
@@ -165,15 +165,18 @@
                                     var m = date.getMinutes(); // 0 - 59
                                     var s = date.getSeconds(); // 0 - 59
                                     var session = "AM";
-                                    var arrhari = ["Mingggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+                                    var arrhari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
                                     var d = arrhari[date.getDay()];
-
+                                    var t = date.getDate();
+                                    var y = date.getFullYear();
+                                    var arrbulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+                                    var b = arrbulan[date.getMonth()];
+                                
                                     if (h == 0) {
                                         h = 12;
                                     }
 
                                     if (h >= 12) {
-                                        h = h - 12;
                                         session = "PM";
                                     }
 
@@ -181,7 +184,7 @@
                                     m = (m < 10) ? "0" + m : m;
                                     s = (s < 10) ? "0" + s : s;
 
-                                    var time = d + "," + h + ":" + m + ":" + s + " " + session;
+                                    var time = d + ", " + t + " " + b + " " + y + " | " + h + ":" + m + ":" + s + " " + session;
                                     document.getElementById("MyClockDisplay").innerText = time;
                                     document.getElementById("MyClockDisplay").textContent = time;
 
@@ -234,7 +237,7 @@
             <footer class="sticky-footer bg-light">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span style="font-size: large; font-weight: bold; color: #6C7C94;">Website Inventory Toko Buku</span>
+                        <span style="font-size: large; color: #6C7C94;">IntoU Book Inventory © 2021</span>
                     </div>
                 </div>
             </footer>
