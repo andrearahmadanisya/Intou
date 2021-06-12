@@ -30,10 +30,8 @@ class BukuController extends CI_Controller
         $this->_validasi();
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = "Buku";
-            // $data['buku'] = $this->admin->getbuku();
+            $data['title'] = "Tambah Buku";
             $data['category'] = $this->admin->get('category');
-            // $data['satuan'] = $this->admin->get('satuan');
 
             // Mengenerate ID buku
             $kode_terakhir = $this->admin->getMax('buku', 'idbuku');
@@ -52,7 +50,7 @@ class BukuController extends CI_Controller
                 redirect('BukuController');
             } else {
                 set_pesan('gagal menyimpan data');
-                redirect('BukuController/add');
+                redirect('buku/add');
             }
         }
     }
@@ -63,7 +61,7 @@ class BukuController extends CI_Controller
         $this->_validasi();
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = "buku";
+            $data['title'] = "Edit Buku";
             $data['category'] = $this->admin->get('category');
             $data['buku'] = $this->admin->get('buku', ['idbuku' => $id]);
             $this->template->load('templates/dashboard', 'buku/edit', $data);
@@ -88,7 +86,6 @@ class BukuController extends CI_Controller
         $this->admin->addHistory($buku);
         // memindahkannya ke database history
         if ($this->admin->delete('buku', 'idbuku', $id)) {
-            // $this->admin->delete('buku', 'idbuku', $id);
             set_pesan('data berhasil dipindahkan kedalam HistoryBuku.');
         } else {
             set_pesan('data gagal dipindahkan.', false);
