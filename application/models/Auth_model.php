@@ -57,12 +57,11 @@ class Auth_model extends CI_Model
         return $this->db->get('buku b')->result_array();
     }
 
-    public function getbukuMasuk($limit = null, $hargapcs = null, $id_buku = null, $range = null)
+    public function getbukuMasuk($limit = null,  $id_buku = null, $range = null)
     {
         $this->db->select('*');
         $this->db->join('supplier sp', 'bm.idsupplier = sp.idsupplier');
         $this->db->join('buku b', 'bm.id_buku = b.idbuku');
-        $this->db->join('buku bk', 'bm.hargapcs = bk.hargabeli');
         $this->db->join('category c', 'b.idcategory = c.idcategory');
         if ($limit != null) {
             $this->db->limit($limit);
@@ -71,10 +70,6 @@ class Auth_model extends CI_Model
         if ($id_buku != null) {
             $this->db->where('idbuku', $id_buku);
         }
-        if ($hargapcs != null) {
-            $this->db->where('hargabeli', $hargapcs);
-        }
-
         if ($range != null) {
             $this->db->where('tanggal_masuk' . ' >=', $range['mulai']);
             $this->db->where('tanggal_masuk' . ' <=', $range['akhir']);
