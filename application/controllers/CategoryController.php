@@ -14,7 +14,7 @@ class CategoryController extends CI_Controller
 
     public function index()
     {
-        $data['title'] = "category";
+        $data['title'] = "Category";
         $data['category'] = $this->admin->get('category');
         $this->template->load('templates/dashboard', 'category/data', $data);
     }
@@ -29,7 +29,7 @@ class CategoryController extends CI_Controller
         $this->_validasi();
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = "category";
+            $data['title'] = "Category";
             $this->template->load('templates/dashboard', 'category/data', $data);
         } else {
             $input = $this->input->post(null, true);
@@ -50,7 +50,7 @@ class CategoryController extends CI_Controller
         $this->_validasi();
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = "category";
+            $data['title'] = "Category";
             $data['category'] = $this->admin->get('category', ['idcategory' => $id]);
             $this->template->load('templates/dashboard', 'category/data', $data);
         } else {
