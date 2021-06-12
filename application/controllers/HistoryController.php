@@ -5,7 +5,7 @@ class HistoryController extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        // load BukuMode
+        // load Model
         $this->load->model('Auth_model', 'admin');
         $this->load->library('form_validation');
     }
