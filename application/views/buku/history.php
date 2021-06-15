@@ -1,9 +1,9 @@
 <?= $this->session->flashdata('pesan'); ?>
-<div class="card shadow-sm border-bottom-primary">
+<div class="card shadow-sm" style="border-bottom: #315c9a; color: #315c9a;">
     <div class="card-header bg-white py-3">
         <div class="row">
             <div class="col">
-                <h4 class="h5 align-middle m-0 font-weight-bold" style="color: #315c9a;">
+                <h4 class="h5 align-middle m-0 font-weight-bold text" style="color: #315c9a;">
                     Data History Buku
                 </h4>
             </div>
@@ -31,16 +31,15 @@
                     <th scope="col" class="text-center">Penulis</th>
                     <th scope="col" class="text-center">Tanggal Masuk</th>
                     <th scope="col" class="text-center">Harga Jual</th>
-                    <th scope="col" class="text-center">Harga Beli</th>
-                    <th scope="col" class="text-center">Non-Active</th>
+                    <th scope="col">Harga Beli</th>
+                    <th scope="col">Dihapus Pada : </th>
                 </tr>
             </thead>
             <tbody>
                 <?php $no = 1;
                 foreach ($buku as $hbk) { ?>
                     <tr>
-                        <!--HINT UNTUK MENGHAPUS USER KALIAN DAPAT MENGGUNAKAN FORM, MENGGUNAKAN ANCHOR ATAU HREF PADA BUTTON-->
-                        <td class="text-center"><?php echo $no++ ?></td>
+                        <td><?php echo $no++ ?></td>
                         <td><?php echo $hbk['idbuku']; ?></td>
                         <td><?php echo $hbk['judul']; ?></td>
                         <td><?php echo $hbk['stok']; ?></td>
