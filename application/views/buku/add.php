@@ -77,8 +77,8 @@
                 </div>
                 <div class="row form-group">
                     <div class="col-md-9 offset-md-3">
+                        <button type="reset" class="btn btn-secondary">Reset</button>
                         <button type="submit" class="btn" style="background-color: #315c9a; color: white;">Simpan</button>
-                        <button type="reset" class="btn btn-secondary">Reset</bu>
                     </div>
                 </div>
                 <?= form_close(); ?>
