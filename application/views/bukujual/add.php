@@ -1,10 +1,10 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div class="card shadow-sm border-bottom-primary">
+        <div class="card shadow-sm" style="border-bottom: #315c9a; color: #315c9a;">
             <div class="card-header bg-white py-3">
                 <div class="row">
                     <div class="col">
-                        <h4 class="h5 align-middle m-0 font-weight-bold" style="color: #315c9a;">
+                        <h4 class="h5 align-middle m-0 font-weight-bold text" style="color: #315c9a;">
                             Form Input Buku Keluar
                         </h4>
                     </div>
@@ -125,8 +125,8 @@
                 </div>
                 <div class="row form-group">
                     <div class="col offset-md-4">
-                        <button type="submit" class="btn" style="background-color: #315c9a; color: white;">Simpan</button>
                         <button type="reset" class="btn btn-secondary">Reset</button>
+                        <button type="submit" class="btn" style="background-color: #315c9a; color: white;">Simpan</button>
                     </div>
                 </div>
                 <?= form_close(); ?>
