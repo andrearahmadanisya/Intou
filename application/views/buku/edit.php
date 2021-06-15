@@ -1,14 +1,14 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div class="card shadow-sm border-bottom-primary">
+        <div class="card shadow-sm" style="border-bottom: #315c9a; color: #315c9a;">
             <div class="card-header bg-white py-3">
                 <div class="row">
                     <div class="col">
-                        <h4 class="h5 align-middle m-0 font-weight-bold" style="color: #315c9a;">
+                        <h4 class="h5 align-middle m-0 font-weight-bold text" style="color: #315c9a;">
                             Form Edit Buku
                         </h4>
                     </div>
-                    <div class=" col-auto">
+                    <div class="col-auto">
                         <a href="<?= base_url('BukuController') ?>" class="btn btn-sm btn-secondary btn-icon-split">
                             <span class="icon">
                                 <i class="fa fa-arrow-left"></i>
@@ -70,8 +70,8 @@
                 </div>
                 <div class="row form-group">
                     <div class="col-md-9 offset-md-3">
+                        <button type="reset" class="btn btn-secondary">Reset</button>
                         <button type="submit" class="btn" style="background-color: #315c9a; color: white;">Simpan</button>
-                        <button type="reset" class="btn btn-secondary">Reset</bu>
                     </div>
                 </div>
                 <?= form_close(); ?>
